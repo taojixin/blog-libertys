@@ -27,13 +27,16 @@ export default function useScroll(refEl) {
       clientHeight.value = el.clientHeight;
       scrollTop.value = el.scrollTop;
       scrollHeight.value = el.scrollHeight;
+      
+      scrollValue.clientHeight = el.clientHeight;
+      scrollValue.scrollTop = el.scrollTop;
+      scrollValue.scrollHeight = el.scrollHeight;
     }
 
     if (clientHeight.value + scrollTop.value >= scrollHeight.value) {
       isReachBottem.value = true;
       console.log("到达底部");
     }
-    console.log("sdf");
   };
 
   // 挂载的时候添加监听

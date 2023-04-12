@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from "vue";
 
 const props = defineProps({
   sortList: {
@@ -35,37 +35,33 @@ const props = defineProps({
   },
   selectBar: {
     type: String,
-    default: () => "常用网页"
-  }
+    default: () => "常用网页",
+  },
+});
+
+const emit = defineEmits(["allListValue"]);
+
+// 获取所有的h3的dom元素
+let allList = ref(null);
+// 获取每个list距离顶部的距离
+let domArr = [];
+onMounted(() => {
+  allList.value.forEach((item) => {
+    domArr.push({
+      key: item.innerText,
+      top: item.offsetTop - 30,
+      // offsetTop, offsetLeft：只读属性。要确定的这两个属性的值，首先得确定元素的offsetParent。offsetParent指的是距该元素最近的position不为static的祖先元素，如果没有则指向body元素。确定了offsetParent，offsetLeft指的是元素左侧偏移offsetParent的距离，同理offsetTop指的是上侧偏移的距离。
+    });
+  });
+  // 将值传递给父组件
+  console.log(domArr);
+  emit("allListValue", domArr);
 });
 
 // 新页面跳转
 function jumpPage(path) {
-  window.open(path, "_blank")
+  window.open(path, "_blank");
 }
-
-// 获取所有的list的dom元素
-let allList = ref(null)
-// 获取每个list距离顶部的距离
-let domArr = []
-onMounted(() => {
-  allList.value.forEach(item => {
-    domArr.push({
-      key: item.innerText,
-      top: item.offsetTop - 30
-    })
-  });
-  console.log(domArr);
-})
-
-// 监听bar的选择
-watch(() => props.selectBar, (newValue) => {
-  let targetTo = domArr.find(item => item.key === newValue)?.top
-  window.scrollTo({
-    top: targetTo,
-    behavior: "smooth"
-  })
-})
 </script>
 
 <style lang="less" scoped>

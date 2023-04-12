@@ -18,27 +18,56 @@
       <collection-list
         :sortList="sortList"
         :selectBar="selectBar"
+        @allListValue="scrollToSome"
       ></collection-list>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, toRefs, watch } from "vue";
+import { ref, watch } from "vue";
 import useScroll from "../../hooks/useScroll";
 import CollectionList from "./cpns/colleciton-list.vue";
 
+// 选择的bar，默认为第一个
 let selectBar = ref("常用网页");
 function clickIndex(name) {
   selectBar.value = name;
+  let targetTo = domArrValue.find((item) => item.key === name)?.top;
+    collectionRef.value.scrollTo({
+      top: targetTo - 150,
+      behavior: "smooth",
+    });
 }
-
+// 选中的bar的样式
 function activeBar(name) {
   return selectBar.value === name
     ? { color: "grey", backgroundColor: "white" }
     : "";
 }
 
+// 选择某个bar时滑动到相应位置
+let collectionRef = ref(null);
+let domArrValue = []
+function scrollToSome(domArr) {
+  domArrValue = domArr
+  // watch(selectBar, (newValue) => {
+  //   let targetTo = domArr.find((item) => item.key === newValue)?.top;
+  //   collectionRef.value.scrollTo({
+  //     top: targetTo - 150,
+  //     behavior: "smooth",
+  //   });
+  // });
+}
+
+// 监听滚动
+let { scrollTop } = useScroll(collectionRef);
+watch(scrollTop, (newValue) => {
+  let newBar = domArrValue.find(item => item.top > newValue)
+  selectBar.value = newBar.key
+});
+
+// bar数据
 const sortList = ref([
   {
     id: 1,
@@ -202,19 +231,6 @@ const sortList = ref([
     ],
   },
 ]);
-
-// 监听滚动
-let collectionRef = ref(null)
-// let newScrollHeight = toRefs(useScroll())
-// console.log(newScrollHeight.scrollHeigh);
-let {scrollTop}  = useScroll(collectionRef)
-let classificationRef = ref(null)
-watch(() => scrollTop.value, (newValue) => {
-    console.log(scrollTop.value);
-  if (newValue < 60) {
-    classificationRef.value.style.transform = `translate(-50%, -${newValue}px)`
-  }
-})
 </script>
 
 <style lang="less" scoped>

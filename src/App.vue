@@ -17,5 +17,4 @@ useResize()
 </script>
 
 <style scoped>
-
 </style>

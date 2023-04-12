@@ -12,37 +12,37 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import("../views/Home/index.vue")
+      component: () => import("../views/home/index.vue")
     },
     {
       path: '/home',
       name: 'home',
-      component: () => import("../views/Home/index.vue")
+      component: () => import("../views/home/index.vue")
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import("../views/About/index.vue")
+      component: () => import("../views/about/index.vue")
     },
     {
       path: '/articles',
       name: 'articles',
-      component: () => import("../views/Articles/index.vue")
+      component: () => import("../views/articles/index.vue")
     },
     {
       path: '/collections',
       name: 'collections',
-      component: () => import("../views/Collections/index.vue")
+      component: () => import("../views/collections/index.vue")
     },
     {
       path: '/life',
       name: 'life',
-      component: () => import("../views/Life/index.vue")
+      component: () => import("../views/life/index.vue")
     },
     {
       path: '/message',
       name: 'message',
-      component: () => import("../views/Message/index.vue")
+      component: () => import("../views/message/index.vue")
     }
   ]
 })

@@ -11,8 +11,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // server: {
-  //   hmr: true,
-  //   usePolling: true
-  // }
+  server: {
+    hmr: true,
+    // usePolling: true
+  }
 })
