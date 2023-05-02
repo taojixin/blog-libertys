@@ -17,4 +17,8 @@ useResize()
 </script>
 
 <style scoped>
+.home-bg {
+  width: 100vw;
+  height: 100vh;
+}
 </style>

@@ -65,10 +65,6 @@ function jumpPage(path) {
 </script>
 
 <style lang="less" scoped>
-.shadow-box {
-  box-shadow: 0 0 20px 1px rgb(188, 185, 185);
-  border-radius: 5px;
-}
 .collection-list {
   .sort-item {
     // height: 200px;

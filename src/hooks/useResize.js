@@ -8,7 +8,7 @@ export default function useResize() {
   // 记录屏幕的状态
   const useScreen = useScreenStore();
   useScreen.clientWidth = clientWidth.value;
-  useScreen.clientHeighta = clientHeight.value;
+  useScreen.clientHeight = clientHeight.value;
 
   // 页面第一次加载或刷新页面后 进行一次判断
   if (clientWidth.value < 700) useScreen.isSmall = true
@@ -21,7 +21,7 @@ export default function useResize() {
     useScreen.clientWidth = clientWidth.value;
     useScreen.clientHeight = clientHeight.value;
 
-    if (clientWidth.value < 700) {
+    if (clientWidth.value < 749) {
       useScreen.isSmall = true
     } else {
       useScreen.isSmall = false

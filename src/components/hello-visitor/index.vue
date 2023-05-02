@@ -4,7 +4,7 @@
            v-if="isShow">
         <div class="container">
           <div class="top">
-            <img src="@/assets/Headportrait.jpg"
+            <img src="../../assets/avatar.jpg"
                  class="portroit"
                  alt="" />
             <span class="date">{{nowTime}}</span>
@@ -50,6 +50,23 @@ import { ref } from 'vue';
   </script>
   
   <style lang="less" scoped>
+  
+  .hello-enter-from,
+  .hello-leave-to {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+  
+  .hello-enter-to,
+  .hello-leave-from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  
+  .hello-enter-active,
+  .hello-leave-active {
+    transition: all 2s ease;
+  }
   .hello-visitor {
     position: fixed;
     top: 100px;
@@ -105,20 +122,4 @@ import { ref } from 'vue';
     }
   }
   
-  .hello-enter-from,
-  .hello-leave-to {
-    transform: translateX(300px);
-    opacity: 0;
-  }
-  
-  .hello-enter-to,
-  .hello-leave-from {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-  
-  .hello-enter-active,
-  .hello-leave-active {
-    transition: all 2s ease;
-  }
   </style>

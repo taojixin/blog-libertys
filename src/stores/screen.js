@@ -6,7 +6,7 @@ const useScreenStore = defineStore("screen", {
     clientWidth: 0,
     // 屏幕高度
     clientHeight: 0,
-    // 屏幕宽度是否小于700
+    // 屏幕宽度是否小于749
     isSmall: false
   }),
   actions: {
