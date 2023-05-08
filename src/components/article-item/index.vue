@@ -1,6 +1,6 @@
 <template>
-  <div class="article-item">
-    <template v-if="articleItem.id % 2 !== 0">
+  <div class="article-item shadow-box" @click="articleDetails(articleItem.id)">
+    <template v-if="(artNum + 1) % 2 !== 0">
       <div class="side">
         <div class="bgimage" :style="bgImage(articleItem.imgUrl)"></div>
       </div>
@@ -38,17 +38,25 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter()
 defineProps({
   articleItem: {
     type: Object,
     required: true,
     defalut: () => {},
   },
+  artNum: {
+    type: Number
+  }
 });
 function bgImage(src) {
   return {
     backgroundImage: `url(${src})`,
   };
+}
+function articleDetails(articleId) {
+  router.push({path:`/articledetails/${articleId}`})
 }
 </script>
 
@@ -58,8 +66,9 @@ function bgImage(src) {
   display: flex;
   border: 1px solid black;
   border-radius: 10px;
-  margin: 10px 0;
+  margin: 50px 0;
   overflow: hidden;
+  cursor: pointer;
 
   &:hover {
     .side {

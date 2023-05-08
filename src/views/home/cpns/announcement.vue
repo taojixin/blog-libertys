@@ -1,5 +1,5 @@
 <template>
-  <div class="announcement shadow-box">
+  <div class="announcement hvr-rotate shadow-box">
     <div class="ann-title">
       <i class="iconfont icon-gonggao"></i>
       <span>公告</span>
@@ -11,7 +11,7 @@
       <p>此博客博主打算长期维护与改进，欢迎大家留言发表自己的意见！</p>
       <p>邮箱：491675919@qq.com</p>
     </div>
-    <img class="grass" src="http://img.libertys.cn/blog/grass.gif" alt="" srcset="">
+    <img class="grass" src="https://img.libertys.cn/blog/grass.gif" alt="" srcset="">
   </div>
 </template>
 

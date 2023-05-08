@@ -257,6 +257,9 @@ const sortList = ref([
     background-color: rgb(227, 219, 219);
     border-radius: 10px;
     z-index: 999;
+    background: url("http://img.libertys.cn/blog/bg4.jpg") no-repeat;
+    background-size: cover;
+    background-position: 30% center;
 
     .sort-item {
       border: 1px solid gray;

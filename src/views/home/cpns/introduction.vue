@@ -1,6 +1,6 @@
 <template>
-  <div class="introduction shadow-box">
-    <img src="../../../assets/avatar.jpg" alt="" srcset="" />
+  <div class="introduction hvr-wobble-skew shadow-box">
+    <img src="../../../assets/avatar.jpg" class="hvr-buzz-out"/>
     <div class="author">Libertys</div>
     <div class="info">
       <div class="info-item">
@@ -18,7 +18,7 @@
       <i class="iconfont icon-weixin2"></i>
       <i class="iconfont icon-csdn1"></i>
     </div>
-    <img class="grass" src="http://img.libertys.cn/blog/grass.gif" alt="" srcset="">
+    <img class="grass" src="https://img.libertys.cn/blog/grass.gif" alt="" srcset="">
   </div>
 </template>
 
