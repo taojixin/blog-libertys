@@ -108,6 +108,7 @@ watch(scrollTop, (newValue) => {
   width: 100vw;
   height: 60px;
   line-height: 60px;
+  // background-color: rgba(119, 116, 116, 0.3);
   display: flex;
   justify-content: space-between;
   z-index: 99;
@@ -169,14 +170,14 @@ watch(scrollTop, (newValue) => {
 
 .navbar-enter-from,
 .navbar-leave-to {
-  transform: translateX(300px);
+  transform: translateY(-60px);
   opacity: 0;
 }
 
 .navbar-enter-to,
 .navbar-leave-from {
   opacity: 1;
-  transform: translateX(0px);
+  transform: translateY(0px);
 }
 
 .navbar-enter-active,

@@ -15,7 +15,7 @@
 <script setup>
 import { onBeforeMount, onMounted, onUnmounted, reactive, ref } from "vue";
 import ArticleItem from "./cpns/article-item.vue";
-import { getAllArticles } from "../../services";
+import { getArticles } from "../../services";
 import WordCloud from "wordcloud";
 
 const isShow = ref(false);
@@ -62,7 +62,7 @@ const options = eval({
 onMounted(() => {});
 
 // onMounted(async () => {
-//   await getAllArticles().then((res) => {
+//   await getArticles().then((res) => {
 //     articles.value = res.data.result;
 //   console.log(res.data.result);
 //   });

@@ -1,9 +1,9 @@
 <template>
   <div class="article-details">
     <div class="loading" v-if="loading">
-      加载中请稍等
+      <img src="https://img.libertys.cn/blog/load1.gif">
     </div>
-    <div class="first-floor"></div>
+    <div class="first-floor" :style="bgImage(artDetails.imgUrl)"></div>
     <div class="second-floor">
       <div class="content-box markdown-body" v-html="artContent"></div>
     </div>
@@ -33,6 +33,11 @@ onMounted(async () => {
   })
   artContent.value = artDetails.content
 })
+function bgImage(src) {
+  return {
+    backgroundImage: `url(${src})`,
+  };
+}
 </script>
 
 <style lang="less" scoped>
@@ -45,11 +50,14 @@ onMounted(async () => {
     color: white;
     height: 100vh;
     width: 100vw;
-    background-color: gray;
+    background-color: white;
+    image {
+      
+    }
   }
   .first-floor {
     height: 300px;
-    background-image: url(https://img.libertys.cn/background/1.jfif);
+    // background-image: url(https://img.libertys.cn/background/1.jfif);
     background-size: cover;
     background-position: center center;
   }

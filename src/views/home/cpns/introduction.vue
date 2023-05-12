@@ -5,24 +5,29 @@
     <div class="info">
       <div class="info-item">
         <span>文章</span>
-        <span>61</span>
+        <span>{{articleNum}}</span>
       </div>
       <div class="info-item">
         <span>标签</span>
-        <span>28</span>
+        <span>{{labelNum}}</span>
       </div>
     </div>
     <div class="contact">
       <i class="iconfont icon-QQ-circle-fill"></i>
       <a href="https://github.com/taojixin" target="_blank"><i class="iconfont icon-github-fill"></i></a>
       <i class="iconfont icon-weixin2"></i>
-      <i class="iconfont icon-csdn1"></i>
+      <a href="https://blog.csdn.net/qq_60602244" target="_blank"><i class="iconfont icon-csdn1"></i></a>
     </div>
     <img class="grass" src="https://img.libertys.cn/blog/grass.gif" alt="" srcset="">
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import {ref} from 'vue'
+
+const articleNum = ref(61)
+const labelNum = ref(28)
+</script>
 
 <style lang="less" scoped>
 .introduction {
@@ -33,6 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 
   img {
     width: 100px;

@@ -5,17 +5,23 @@
       <span>公告</span>
     </div>
     <div class="content">
-      <p>
-        大家好，这里是我的个人博客，是一位计算机软件工程专业即将面临找工作的大三学生！
-      </p>
-      <p>此博客博主打算长期维护与改进，欢迎大家留言发表自己的意见！</p>
-      <p>邮箱：491675919@qq.com</p>
+      <p>{{ announcement.firstP }}</p>
+      <p>{{ announcement.secondP }}</p>
+      <p>邮箱：{{ announcement.email }}</p>
     </div>
-    <img class="grass" src="https://img.libertys.cn/blog/grass.gif" alt="" srcset="">
+    <img class="grass" src="https://img.libertys.cn/blog/grass.gif" />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive } from "vue";
+const announcement = reactive({
+  firstP:
+    "大家好，这里是我的个人博客，是一位计算机软件工程专业即将面临找工作的大三学生！",
+  secondP: "此博客博主打算长期维护与改进，欢迎大家留言发表自己的意见！",
+  email: "491675919@qq.com",
+});
+</script>
 
 <style lang="less" scoped>
 .announcement {
@@ -24,6 +30,7 @@
   box-sizing: border-box;
   padding: 20px;
   position: relative;
+  overflow: hidden;
 
   .ann-title {
     display: flex;

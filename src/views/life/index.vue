@@ -22,7 +22,7 @@ onUnmounted(() => {
 .first-floor {
   height: 40vh;
   width: 100vw;
-  background: url("http://img.libertys.cn/blog/bg6.jpg") no-repeat;
+  background: url("https://img.libertys.cn/blog/bg5.jpg") no-repeat;
   background-size: cover;
   background-position: 30% center;
 }
