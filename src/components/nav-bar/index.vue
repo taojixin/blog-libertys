@@ -2,6 +2,7 @@
   <transition name="navbar">
     <div class="top-navbar" v-show="!isHidden">
       <h1>Libertys</h1>
+      <!-- 大屏导航 -->
       <div class="nav" v-if="!useScreen.isSmall">
         <template v-for="item in navList" :key="item.id">
           <span
@@ -11,9 +12,18 @@
           >
             <i :class="item.iconClass"></i>
             {{ item.text }}
+            <div class="other" v-if="item.otherItem.length !== 0">
+              <template v-for="child in item.otherItem" :key="child.id">
+                <div class="other-item" @click.stop="itemGoTo(child.path)">
+                  <i :class="child.iconClass"></i>
+                  {{ child.text }}
+                </div>
+              </template>
+            </div>
           </span>
         </template>
       </div>
+      <!-- 小屏导航 -->
       <div class="samll-nav" v-else>
         <i class="iconfont icon-xiangxia"></i>
       </div>
@@ -23,7 +33,7 @@
 
 <script setup>
 import { useRouter, useRoute } from "vue-router";
-import { ref, watch, onMounted} from "vue";
+import { ref, watch, onMounted } from "vue";
 import useScreenStore from "../../stores/screen";
 import useScroll from "../../hooks/useScroll";
 
@@ -38,6 +48,7 @@ const navList = ref([
     text: "首页",
     iconClass: "iconfont icon-shouyefill size",
     isActive: false,
+    otherItem: [],
   },
   {
     id: 1,
@@ -45,6 +56,7 @@ const navList = ref([
     text: "文章",
     iconClass: "iconfont icon-16 size",
     isActive: false,
+    otherItem: [],
   },
   {
     id: 2,
@@ -52,6 +64,7 @@ const navList = ref([
     text: "收藏",
     iconClass: "iconfont icon-shoucangjia size",
     isActive: false,
+    otherItem: [],
   },
   {
     id: 3,
@@ -59,6 +72,32 @@ const navList = ref([
     text: "生活",
     iconClass: "iconfont icon-icon size",
     isActive: false,
+    otherItem: [
+      {
+        id: 30,
+        path: "daily",
+        text: "日常",
+        iconClass: "iconfont icon-wenzhang",
+      },
+      {
+        id: 31,
+        path: "phone",
+        text: "照片",
+        iconClass: "iconfont icon-xiangce",
+      },
+      {
+        id: 32,
+        path: "music",
+        text: "音乐",
+        iconClass: "iconfont icon-yinle",
+      },
+      {
+        id: 33,
+        path: "lover",
+        text: "她",
+        iconClass: "iconfont icon-aiqingniao",
+      },
+    ],
   },
   {
     id: 4,
@@ -66,6 +105,7 @@ const navList = ref([
     text: "留言",
     iconClass: "iconfont icon-liuyanfill size",
     isActive: false,
+    otherItem: [],
   },
   {
     id: 5,
@@ -73,6 +113,7 @@ const navList = ref([
     text: "关于",
     iconClass: "iconfont icon-guanyu size",
     isActive: false,
+    otherItem: [],
   },
 ]);
 
@@ -85,6 +126,10 @@ function goTo(path, id) {
     }
     return item;
   });
+  console.log("fu");
+  router.push("/" + path);
+}
+function itemGoTo(path) {
   router.push("/" + path);
 }
 
@@ -134,18 +179,57 @@ watch(scrollTop, (newValue) => {
       margin: 5px 5px;
       // padding: 0 5px;
       color: aliceblue;
+      &:hover {
+        .other {
+          // visibility: visible;
+          display: flex;
+        }
+      }
 
       .other {
         position: absolute;
-        bottom: -105px;
+        top: 50px;
         width: 100px;
-        height: 100px;
-        border: 1px solid palegreen;
-        background: gray;
-        // display: none;
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        background: rgba(176, 174, 174, 0.5);
+        // visibility: hidden;
+        display: none;
+
         .other-item {
-          height: 20px;
-          border: 1px solid pink;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 30px;
+          width: 100px;
+          transition: all 0.5s;
+          overflow: hidden;
+          i {
+            margin-right: 5px;
+          }
+          &:hover {
+            background: rgba(176, 174, 174, 0.8);
+            color: #7d7a7a;
+            transform: scale(1.2);
+          }
+          &:last-child {
+            &:hover {
+              font-weight: bold;
+              color: #ed758d;
+              transition: all 0.2s;
+              animation: lover ease-in 1s infinite;
+            }
+            @keyframes lover {
+              0% {
+                transform: scale(1);
+              }
+              100% {
+                transform: scale(1.2);
+              }
+            }
+          }
         }
       }
 

@@ -3,8 +3,8 @@
     <div class="loading" v-if="loading">
       <img src="https://img.libertys.cn/blog/load1.gif">
     </div>
-    <div class="first-floor" :style="bgImage(artDetails.imgUrl)"></div>
-    <div class="second-floor">
+    <div class="first" :style="bgImage(artDetails.imgUrl)"></div>
+    <div class="second">
       <div class="content-box markdown-body" v-html="artContent"></div>
     </div>
   </div>
@@ -51,19 +51,15 @@ function bgImage(src) {
     height: 100vh;
     width: 100vw;
     background-color: white;
-    image {
-      
-    }
   }
-  .first-floor {
+  .first {
     height: 300px;
     // background-image: url(https://img.libertys.cn/background/1.jfif);
     background-size: cover;
     background-position: center center;
   }
-  .second-floor {
-    
-    border: 1px solid black;
+  .second {
+    // border: 1px solid black;
     width: 60vw;
     margin: 0 auto;
     .content-box {

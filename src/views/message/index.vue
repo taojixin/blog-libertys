@@ -1,7 +1,10 @@
 <template>
   <transition name="message">
     <div class="message" v-show="isShow">
-      <div class="first-floor"></div>
+      <div class="first-floor">
+        <span>留 言</span>
+        <p>须知少时凌云志，曾许人间第一流!</p>
+      </div>
       <div class="second-floor">
         <MessageReadme />
         <MessagePanel />
@@ -34,6 +37,17 @@ onUnmounted(() => {
     background: url("https://img.libertys.cn/blog/bg4.jpg") no-repeat;
     background-size: cover;
     background-position: 30% center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(182, 174, 174);
+    font-weight: bold;
+    font-size: 40px;
+    p {
+      font-size: 14px;
+      color: rgb(150, 147, 147);
+    }
   }
   .second-floor {
     width: 80vw;
@@ -45,7 +59,7 @@ onUnmounted(() => {
 .message-enter-from,
 .message-leave-to {
   filter: blur(10px);
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .message-enter-to,

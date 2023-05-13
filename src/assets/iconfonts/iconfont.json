@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "777843",
+      "name": "赞",
+      "font_class": "icon1",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "924719",
+      "name": "文章",
+      "font_class": "wenzhang",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "2474499",
+      "name": "爱心",
+      "font_class": "aixin1",
+      "unicode": "e7cd",
+      "unicode_decimal": 59341
+    },
+    {
+      "icon_id": "2932867",
+      "name": "音乐",
+      "font_class": "yinle",
+      "unicode": "e80f",
+      "unicode_decimal": 59407
+    },
+    {
+      "icon_id": "3837049",
+      "name": "爱情鸟",
+      "font_class": "aiqingniao",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "6501297",
+      "name": "返回顶部",
+      "font_class": "icon--fanhuidingbu",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "6560992",
+      "name": "相册",
+      "font_class": "xiangce",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "7965875",
+      "name": "比心",
+      "font_class": "bixin",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "8767299",
+      "name": "照片",
+      "font_class": "zhaopian",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
       "icon_id": "1129689",
       "name": "差号",
       "font_class": "chahao",
