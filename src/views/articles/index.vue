@@ -1,6 +1,7 @@
 <template>
   <transition name="articles">
     <div class="articles" v-show="isShow">
+      <NavBar />
       <div class="first-floor"></div>
       <!-- <template v-for="item in articles" :key="item.id">
       <ArticleItem :article-item="item"></ArticleItem>
@@ -20,14 +21,10 @@ import WordCloud from "wordcloud";
 
 const isShow = ref(false);
 
-const timer = setTimeout(() => {
-  isShow.value = true;
-}, 0);
 const timer2 = setTimeout(() => {
   WordCloud(document.getElementById("canvas"), options);
 }, 0);
 onUnmounted(() => {
-  clearInterval(timer);
   clearInterval(timer2);
 });
 
@@ -59,7 +56,9 @@ const options = eval({
     return size * 4;
   },
 });
-onMounted(() => {});
+onMounted(() => {
+  isShow.value = true
+});
 
 // onMounted(async () => {
 //   await getArticles().then((res) => {

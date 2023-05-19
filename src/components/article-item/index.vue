@@ -109,7 +109,7 @@ onMounted(() => {
   transition: all 0.2s;
 
   &:hover {
-    border: 5px solid #c18fef;
+    border: 5px solid var(--purpleBorder);
     .side {
       .bgimage {
         transform: scale(1.2);
@@ -191,11 +191,11 @@ onMounted(() => {
         .label-item {
           margin: 5px;
           padding: 5px;
-          color: #8a51c0;
+          color: var(--purpleColor);
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: #dbc2f4;
+          background-color: var(--purpleBg);
         }
       }
     }

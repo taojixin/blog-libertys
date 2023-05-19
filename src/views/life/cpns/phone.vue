@@ -17,6 +17,7 @@
           </div>
         </template>
       </div>
+      <back-previous />
     </div>
   </transition>
 </template>
@@ -26,6 +27,7 @@ import { ref, onUnmounted } from "vue";
 import {useRouter} from 'vue-router'
 import {storeToRefs} from 'pinia'
 import usePhoneStore from "../../../stores/phone";
+import BackPrevious from "../../../components/base-button/back-previous.vue";
 const isShow = ref(false);
 
 const router = useRouter()

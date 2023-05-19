@@ -1,28 +1,22 @@
 <template>
-  <transition name="life">
-    <div class="life" v-show="isShow">
-      <div class="first-floor">
-        <span>关 于</span>
-        <p>须知少时凌云志，曾许人间第一流!</p>
-      </div>
-      <div class="second-floor">
-        <router-view />
-      </div>
-      
+  <div class="life" v-show="isShow">
+    <NavBar />
+    <div class="first-floor">
+      <span>关 于</span>
+      <p>须知少时凌云志，曾许人间第一流!</p>
     </div>
-  </transition>
+    <div class="second-floor">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { ref, onUnmounted } from "vue";
+import { ref, onMounted } from "vue";
 const isShow = ref(false);
-
-const timer = setTimeout(() => {
-  isShow.value = true;
-}, 0);
-onUnmounted(() => {
-  clearInterval(timer);
-});
+onMounted(() => {
+  isShow.value = true
+})
 </script>
 
 <style lang="less" scoped>

@@ -1,6 +1,7 @@
 <template>
   <transition name="home">
     <div class="home" v-show="isShow">
+      <NavBar />
       <div class="first-floor">
         <div class="box">
           <span class="typed"></span> <i class="iconfont icon-xiangxia"></i>
@@ -24,7 +25,9 @@
               :artNum="index"
             ></article-item>
           </template>
-          <div class="more" @click="loadMore" v-show="loadHidden">点击加载更多</div>
+          <div class="more" @click="loadMore" v-show="loadHidden">
+            点击加载更多
+          </div>
         </div>
       </div>
       <div class="third-floor">
@@ -57,18 +60,15 @@ const isHidden = useScreen.isSmall; // 页面宽度缩小到一定程度时隐�
 
 // 首次加载动画
 const isShow = ref(false);
-const timer = setTimeout(() => {
-  isShow.value = true;
-}, 0);
-onUnmounted(() => {
-  clearInterval(timer);
-});
 
 // 请求文章数据
 let aritcleList = ref([]);
 const count = ref(5);
 const offset = ref(0);
 onMounted(async () => {
+  // 过渡动画
+  isShow.value = true
+  // 获取数据
   await getArticles(count.value, offset.value).then((res) => {
     console.log(res.data.endResult);
     aritcleList.value = res.data.endResult.map((item) => {
@@ -158,13 +158,13 @@ watch(scrollTop, (newValue) => {
         bottom: 10px;
         transform: translate(-50%, 0);
         color: rgb(231, 15, 90);
-        background-color: rgba(231, 15, 90, .2);
+        background-color: rgba(231, 15, 90, 0.2);
         padding: 5px;
         border-radius: 10px;
         transition: all 0.5s;
         &:hover {
           cursor: pointer;
-          background-color: rgba(231, 15, 90, .5);
+          background-color: rgba(231, 15, 90, 0.5);
         }
       }
     }

@@ -1,12 +1,9 @@
 <template>
-  <nav-bar></nav-bar>
-  <router-view />
-
+    <router-view />
 </template>
 
 <script setup>
 import { RouterView } from 'vue-router'
-import NavBar from './components/nav-bar/index.vue';
 import useResize from "./hooks/useResize"
 
 useResize()

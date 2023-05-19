@@ -21,6 +21,10 @@
       <div class="mask" v-show="isMask" @click="isMask = !isMask">
         <img ref="maskImgRef" src="" alt="">
       </div>
+      <!-- 返回顶部与底部按钮 -->
+      <back-top />
+      <back-bottom />
+      <back-previous />
     </div>
   </transition>
 </template>
@@ -29,6 +33,9 @@
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import usePhoneStore from "../../stores/phone";
+import BackTop from '../base-button/back-top.vue'
+import BackBottom from "../base-button/back-bottom.vue";
+import BackPrevious from "../base-button/back-previous.vue";
 
 
 import { ref, onUnmounted } from "vue";
@@ -70,7 +77,7 @@ function enlarge(src) {
 <style lang="less" scoped>
 .album-details {
   .second-floor {
-    border: 1px solid black;
+    // border: 1px solid black;
     width: 80vw;
     margin: 0 auto;
     .grid {

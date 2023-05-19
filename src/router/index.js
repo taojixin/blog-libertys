@@ -1,12 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-// const About = () => import("../views/about/index.vue")
-// const Articles = () => import("../views/articles/index.vue")
-// const Collections = () => import("../views/collections/index.vue")
-// const Home = () => import("../views/home/index.vue")
-// const Life = () => import("../views/life/index.vue")
-// const Message = () => import("../views/message/index.vue")
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

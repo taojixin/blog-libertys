@@ -1,5 +1,6 @@
 import request from "../request";
 
+// 获取留言信息
 export function getMessage(count, offset) {
   return request.post({
     url: "/blog/message/getmsg",
@@ -10,13 +11,14 @@ export function getMessage(count, offset) {
   });
 }
 
-export function sendMessage(name, content, email, reply, replyId) {
+// 进行留言
+export function sendMessage(name, content, qq, reply, replyId) {
   return request.post({
     url: "/blog/message/makemsg",
     data: {
       name,
       content,
-      email,
+      qq,
       reply,
       replyId,
     },

@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1304886",
+      "name": "收起菜单",
+      "font_class": "shouqicaidan",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "1304894",
+      "name": "展开菜单",
+      "font_class": "zhankaicaidan",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "1724231",
+      "name": "标签",
+      "font_class": "biaoqian1",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "712429",
+      "name": "成功",
+      "font_class": "icon-check-solid",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "6204096",
+      "name": "失败",
+      "font_class": "shibai",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "13604664",
+      "name": "警告",
+      "font_class": "jinggao",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
       "icon_id": "777843",
       "name": "赞",
       "font_class": "icon1",

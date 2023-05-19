@@ -1,3 +1,13 @@
+:root {
+  --purpleColor: #8a51c0;
+  --purpleBg: #dbc2f4;
+  --purpleBorder: #c18fef;
+
+  --blueColor: #6d61d0;
+  --blueBg: #85c6df;
+}
+
+
 a {
   text-decoration: none;
 }

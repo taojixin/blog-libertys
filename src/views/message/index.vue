@@ -1,32 +1,43 @@
 <template>
   <transition name="message">
     <div class="message" v-show="isShow">
+      <NavBar />
       <div class="first-floor">
         <span>留 言</span>
         <p>须知少时凌云志，曾许人间第一流!</p>
       </div>
       <div class="second-floor">
         <MessageReadme />
-        <MessagePanel />
-        <MessageItem />
+        <ReplyPanel :title="'留言'" :replyType="'message'" :reply="true" :replyId="0" @updateMessage="updateMsg"/>
+        <ReplyDetails :replyType="'message'" :message="messageDetails" :total="total" />
       </div></div
   ></transition>
 </template>
 
 <script setup>
-import { ref, onUnmounted } from "vue";
+import ReplyPanel from '../../components/reply-panel/index.vue'
+import ReplyDetails from '../../components/reply-details/index.vue'
 import MessageReadme from "./cpns/message-readme.vue";
-import MessagePanel from "./cpns/message-panel.vue";
-import MessageItem from "./cpns/message-item.vue";
+
+import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+
+import useMessageStore from '../../stores/message'
 
 const isShow = ref(false);
+onMounted(() => {
+  isShow.value = true
+})
 
-const timer = setTimeout(() => {
-  isShow.value = true;
-}, 0);
-onUnmounted(() => {
-  clearInterval(timer);
-});
+// 获取评论信息
+const messageStore = useMessageStore()
+messageStore.fetchMessageDetails()
+const {messageDetails,total} = storeToRefs(messageStore)
+
+// 评论后更新评论列表
+function updateMsg() {
+  messageStore.fetchMessageDetails()
+}
 </script>
 
 <style lang="less" scoped>

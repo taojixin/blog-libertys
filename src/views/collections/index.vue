@@ -1,5 +1,6 @@
 <template>
   <div class="collections" ref="collectionRef">
+    <NavBar />
     <!-- 导航 -->
     <div class="classification" ref="classificationRef">
       <div
@@ -34,10 +35,10 @@ let selectBar = ref("常用网页");
 function clickIndex(name) {
   selectBar.value = name;
   let targetTo = domArrValue.find((item) => item.key === name)?.top;
-    collectionRef.value.scrollTo({
-      top: targetTo - 150,
-      behavior: "smooth",
-    });
+  collectionRef.value.scrollTo({
+    top: targetTo - 150,
+    behavior: "smooth",
+  });
 }
 // 选中的bar的样式
 function activeBar(name) {
@@ -48,9 +49,9 @@ function activeBar(name) {
 
 // 选择某个bar时滑动到相应位置
 let collectionRef = ref(null);
-let domArrValue = []
+let domArrValue = [];
 function scrollToSome(domArr) {
-  domArrValue = domArr
+  domArrValue = domArr;
   // watch(selectBar, (newValue) => {
   //   let targetTo = domArr.find((item) => item.key === newValue)?.top;
   //   collectionRef.value.scrollTo({
@@ -63,8 +64,8 @@ function scrollToSome(domArr) {
 // 监听滚动
 let { scrollTop } = useScroll(collectionRef);
 watch(scrollTop, (newValue) => {
-  let newBar = domArrValue.find(item => item.top > newValue)
-  selectBar.value = newBar.key
+  let newBar = domArrValue.find((item) => item.top > newValue);
+  selectBar.value = newBar.key;
 });
 
 // bar数据

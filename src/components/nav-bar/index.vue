@@ -7,14 +7,14 @@
         <template v-for="item in navList" :key="item.id">
           <span
             class="nav-item hvr-overline-reveal hvr-wobble-bottom"
-            @click="goTo(item.path, item.id)"
-            :class="{ active: item.isActive }"
+            @click="goTo(item.path)"
+            :class="{ active: item.path === isActivePath }"
           >
             <i :class="item.iconClass"></i>
             {{ item.text }}
             <div class="other" v-if="item.otherItem.length !== 0">
               <template v-for="child in item.otherItem" :key="child.id">
-                <div class="other-item" @click.stop="itemGoTo(child.path)">
+                <div class="other-item" @click.stop="goTo(child.path)">
                   <i :class="child.iconClass"></i>
                   {{ child.text }}
                 </div>
@@ -24,8 +24,59 @@
         </template>
       </div>
       <!-- 小屏导航 -->
-      <div class="samll-nav" v-else>
-        <i class="iconfont icon-xiangxia"></i>
+      <div class="small-nav" v-else>
+        <i class="iconfont icon-shouqicaidan" @click="expand"></i>
+      </div>
+
+      <div class="small-panel" @click="expand" :class="expandCss">
+        <div class="panel-box">
+          <div class="first-floor">
+            <div class="left">
+              <img src="../../assets/avatar.jpg" alt="" />
+              <div class="name">Libertys</div>
+            </div>
+            <div class="right">
+              <div class="info">
+                <div class="info-item">
+                  <span>文 章</span>
+                  <span>61</span>
+                </div>
+                <div class="info-item">
+                  <span>标 签</span>
+                  <span>28</span>
+                </div>
+              </div>
+              <div class="contact">
+                <a href="https://github.com/taojixin" target="_blank"
+                  ><i class="iconfont icon-github-fill"></i
+                ></a>
+                <a href="https://blog.csdn.net/qq_60602244" target="_blank"
+                  ><i class="iconfont icon-csdn1"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="second-floor">
+            <template v-for="item in navList" :key="item.id">
+              <div
+                class="nav-item"
+                @click="smallGoTo(item.path)"
+                :class="{ life: item.text === '生活' }"
+              >
+                <i class="iconfont" :class="item.iconClass"></i>
+                <span>{{ item.text }}</span>
+                <div class="other" v-if="item.otherItem.length !== 0">
+                  <template v-for="child in item.otherItem" :key="child.id">
+                    <div class="other-item" @click.stop="goTo(child.path)">
+                      <i :class="child.iconClass"></i>
+                      {{ child.text }}
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
       </div>
     </div>
   </transition>
@@ -39,6 +90,14 @@ import useScroll from "../../hooks/useScroll";
 
 const useScreen = useScreenStore();
 const router = useRouter();
+const route = useRoute();
+
+const isActivePath = ref("/home");
+onMounted(() => {
+  if (route.path === "/" + route.query.toPath) {
+    isActivePath.value = route.path.split("/")[1];
+  }
+});
 
 // 导航列表
 const navList = ref([
@@ -47,7 +106,6 @@ const navList = ref([
     path: "home",
     text: "首页",
     iconClass: "iconfont icon-shouyefill size",
-    isActive: false,
     otherItem: [],
   },
   {
@@ -55,7 +113,6 @@ const navList = ref([
     path: "articles",
     text: "文章",
     iconClass: "iconfont icon-16 size",
-    isActive: false,
     otherItem: [],
   },
   {
@@ -63,7 +120,6 @@ const navList = ref([
     path: "collections",
     text: "收藏",
     iconClass: "iconfont icon-shoucangjia size",
-    isActive: false,
     otherItem: [],
   },
   {
@@ -71,7 +127,6 @@ const navList = ref([
     path: "life",
     text: "生活",
     iconClass: "iconfont icon-icon size",
-    isActive: false,
     otherItem: [
       {
         id: 30,
@@ -104,7 +159,6 @@ const navList = ref([
     path: "message",
     text: "留言",
     iconClass: "iconfont icon-liuyanfill size",
-    isActive: false,
     otherItem: [],
   },
   {
@@ -112,37 +166,47 @@ const navList = ref([
     path: "about",
     text: "关于",
     iconClass: "iconfont icon-guanyu size",
-    isActive: false,
     otherItem: [],
   },
 ]);
 
-function goTo(path, id) {
-  navList.value = navList.value.map((item) => {
-    if (item.id === id) {
-      item.isActive = true;
-    } else {
-      item.isActive = false;
-    }
-    return item;
+function goTo(path) {
+  router.push({
+    path: "/" + path,
+    query: {
+      toPath: path,
+    },
   });
-  console.log("fu");
-  router.push("/" + path);
-}
-function itemGoTo(path) {
-  router.push("/" + path);
 }
 
 // 监听滚动导航消失
 let isHidden = ref(false);
 let { scrollTop } = useScroll();
 watch(scrollTop, (newValue) => {
-  if (newValue > 500) {
+  if (newValue > 100) {
     isHidden.value = true;
   } else {
     isHidden.value = false;
   }
 });
+
+// 小屏
+const expandCss = ref("collapse");
+const isExpand = ref(false);
+function expand() {
+  expandCss.value = isExpand.value ? "collapse" : "expand";
+  isExpand.value = !isExpand.value;
+}
+function smallGoTo(path) {
+  router.push({
+    path: "/" + path,
+    query: {
+      toPath: path,
+    },
+  });
+  expandCss.value = isExpand.value ? "collapse" : "expand";
+  isExpand.value = !isExpand.value;
+}
 </script>
 
 <style lang="less" scoped>
@@ -152,8 +216,6 @@ watch(scrollTop, (newValue) => {
   left: 0;
   width: 100vw;
   height: 60px;
-  line-height: 60px;
-  // background-color: rgba(119, 116, 116, 0.3);
   display: flex;
   justify-content: space-between;
   z-index: 99;
@@ -246,6 +308,129 @@ watch(scrollTop, (newValue) => {
       }
     }
   }
+  .small-nav {
+    i {
+      font-size: 40px;
+      color: white;
+      margin-right: 10px;
+    }
+  }
+
+  .small-panel {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    // background-color: rgba(128, 128, 128, 0.5);
+    transition: all 1s;
+
+    .panel-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80%;
+      height: 100%;
+      float: right;
+      background-color: white;
+      .first-floor {
+        border-bottom: 3px dotted gray;
+        height: 140px;
+        display: flex;
+        .left {
+          position: relative;
+          width: 140px;
+          img {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 85px;
+            height: 85px;
+            border-radius: 85px;
+          }
+          .name {
+            position: absolute;
+            bottom: 7px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font-size: 25px;
+            font-weight: bold;
+            color: gray;
+          }
+        }
+        .right {
+          position: relative;
+          flex: 1;
+          .info {
+            color: gray;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            .info-item {
+              margin: 0 10px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              span {
+                margin: 2px 0;
+              }
+            }
+          }
+          .contact {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            bottom: 10px;
+            i {
+              font-size: 37px;
+              margin: 0 10px;
+              color: rgb(104, 101, 101);
+            }
+          }
+        }
+      }
+      .second-floor {
+        border-bottom: 3px dotted gray;
+        // border: 1px solid pink;
+        // height: 500px;
+        padding: 15px 30px;
+        background-color: aliceblue;
+        .nav-item {
+          display: flex;
+          align-items: center;
+          margin: 20px 0;
+          padding: 0 10px;
+          background-color: rgb(209, 228, 245);
+          border-bottom: 3px solid gray;
+          border-radius: 10px;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+
+.life {
+  height: 150px !important;
+  .other {
+    width: 200px;
+    margin-left: 20px;
+    .other-item {
+      margin: 10px 0;
+      padding: 3px;
+      border-radius: 10px;
+      border-bottom: 3px solid gray;
+      background-color: rgb(173, 200, 224);
+    }
+  }
+}
+.expand {
+  transform: translate(0, 0);
+}
+.collapse {
+  transform: translate(100%, 0);
 }
 
 .active {
