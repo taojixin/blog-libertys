@@ -44,18 +44,14 @@
       />
     </div>
     <!-- 快捷按钮 -->
-    <BackPrevious v-show="!isHidden" />
-    <BackBottom v-show="!isHidden" />
-    <BackTop v-show="!isHidden" />
+    <ShortcutBtn />
   </div>
 </template>
 
 <script setup>
-import BackPrevious from "../base-button/back-previous.vue";
-import BackBottom from "../base-button/back-bottom.vue";
-import BackTop from "../base-button/back-top.vue";
 import ReplyPanel from "../reply-panel/index.vue";
 import ReplyDetails from "../reply-details/index.vue";
+import ShortcutBtn from '../shortcut-btn/index.vue'
 
 import { onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -69,7 +65,7 @@ const router = useRouter();
 const isHidden = ref(true);
 
 const loading = ref(true);
-  const articleId = route.params.articleId;
+const articleId = route.params.articleId;
 // 文章信息
 let artDetails = reactive({});
 const time = ref("1970-01-01");
@@ -119,6 +115,7 @@ function updateMsg() {
     height: 100vh;
     width: 100vw;
     background-color: white;
+    z-index: 99;
   }
   .first {
     display: flex;

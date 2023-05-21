@@ -7,7 +7,7 @@
       <div class="first-floor">
         <div class="left">
           <span class="name">{{ replyItem.name }}</span>
-          <div class="floor">{{ floor + 1}}楼</div>
+          <div class="floor">{{ floor + 1 }}楼</div>
           <span class="time">{{ formatTime(replyItem.time) }}</span>
         </div>
       </div>
@@ -24,18 +24,18 @@
 </template>
 
 <script setup>
-import { formatTime } from '../../../utils/formatTime';
+import { formatTime } from "../../../utils/formatTime";
 defineProps({
   replyItem: {
     type: Object,
     defaule: {},
   },
   replyName: {
-    type: String
+    type: String,
   },
   floor: {
-    type: Number
-  }
+    type: Number,
+  },
 });
 
 function setAvatar(qq) {
@@ -71,7 +71,7 @@ function setAvatar(qq) {
     }
   }
   .right-box {
-    padding: 10px 10px;
+    padding: 10px;
     // border: 1px solid pink;
     flex: 1;
 
@@ -121,6 +121,54 @@ function setAvatar(qq) {
         padding: 5px 10px;
         border-radius: 10px;
         margin: 10px 0;
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .reply-item {
+    // border: 1px solid red;
+    .left-box {
+      // border: 1px solid black;
+      width: 50px;
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+      }
+    }
+    .right-box {
+      padding: 0;
+      .first-floor {
+        .left {
+          margin-top: 5px;
+          .name {
+            width: 60px;
+            font-size: 13px;
+            // 文字超出省略
+            overflow: hidden;
+            text-overflow: ellipsis; // 产出部分省略
+            display: -webkit-box;
+            -webkit-line-clamp: 1; // 最多显示四行
+            -webkit-box-orient: vertical;
+          }
+          .floor {
+            font-size: 12px;
+          }
+        }
+      }
+      .second-floor {
+        // border: 1px solid blue;
+        padding: 5px 0;
+        .reply {
+          span {
+            font-size: 14px;
+          }
+        }
+        p {
+          padding: 5px;
+          margin: 5px 0;
+        }
       }
     }
   }

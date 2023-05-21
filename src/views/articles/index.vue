@@ -2,104 +2,140 @@
   <transition name="articles">
     <div class="articles" v-show="isShow">
       <NavBar />
-      <div class="first-floor"></div>
-      <!-- <template v-for="item in articles" :key="item.id">
-      <ArticleItem :article-item="item"></ArticleItem>
-    </template> -->
-      <div class="word-cloud">
-        <div id="canvas" class="canvas"></div>
+      <div class="first-floor">
+        <span>文章</span>
+        <p>须知少时凌云志，曾许人间第一流!</p>
+      </div>
+      <div class="second-floor">
+        <div class="left">
+          <!-- 标签列表 -->
+          <labels-list />
+          <div class="new-arts">最新文章</div>
+          <!-- 文章列表 -->
+          <template v-for="(item, index) in aritcleList" :key="item.id">
+            <article-item
+              :articleItem="item"
+              :itemIndex="index"
+              :artNum="index"
+            ></article-item>
+          </template>
+        </div>
+        <div class="right">
+          <RightBox />
+        </div>
       </div>
     </div>
   </transition>
 </template>
 
 <script setup>
-import { onBeforeMount, onMounted, onUnmounted, reactive, ref } from "vue";
-import ArticleItem from "./cpns/article-item.vue";
+import { onMounted, ref } from "vue";
 import { getArticles } from "../../services";
-import WordCloud from "wordcloud";
+
+import ArticleItem from "../../components/article-item/index.vue";
+import LabelsList from "./cpns/labels-list.vue";
+import RightBox from "./cpns/right-box.vue";
 
 const isShow = ref(false);
 
-const timer2 = setTimeout(() => {
-  WordCloud(document.getElementById("canvas"), options);
-}, 0);
-onUnmounted(() => {
-  clearInterval(timer2);
+// 请求文章数据
+let aritcleList = ref([]);
+const count = ref(5);
+const offset = ref(0);
+onMounted(async () => {
+  // 过渡动画
+  isShow.value = true;
+  // 获取数据
+  await getArticles(count.value, offset.value).then((res) => {
+    aritcleList.value = res.data.endResult.map((item) => {
+      item.time =
+        item.time.split("T")[0] + " " + item.time.split("T")[1].substr(0, 8);
+      return item;
+    });
+  });
 });
-
-let articles = ref([]);
-let wordData = [
-  ["javaScript", 12],
-  ["Java", 8],
-  ["生活", 20],
-  ["杂谈", 17],
-  ["vue", 13],
-  ["node", 12],
-];
-const options = eval({
-  list: wordData, //或者[['各位观众',45],['词云', 21],['来啦!!!',13]],只要格式满足这样都可以
-  gridSize: 1, // 密集程度 数字越小越密集
-  weightFactor: 1, // 字体大小=原始大小*weightFactor
-  // maxFontSize: 12, //最大字号
-  // minFontSize: 6, //最小字号
-  fontWeight: "normal", //字体粗细
-  fontFamily: "Times, serif", // 字体
-  color: "random-light", // 字体颜色 'random-dark' 或者 'random-light'
-  backgroundColor: "white", // 背景颜色
-  rotateRatio: 1, // 字体倾斜(旋转)概率，1代表总是倾斜(旋转)
-  gridSize: 20, // 越大，词与词之间间距越大
-  click: function (item, dimension, event) {
-    console.log(item, dimension, event);
-  },
-  weightFactor: function (size) {
-    return size * 4;
-  },
-});
-onMounted(() => {
-  isShow.value = true
-});
-
-// onMounted(async () => {
-//   await getArticles().then((res) => {
-//     articles.value = res.data.result;
-//   console.log(res.data.result);
-//   });
-// });
 </script>
 
 <style lang="less" scoped>
+.positionfixed {
+  position: fixed;
+  right: calc(10vw - 10px);
+  top: 35px;
+  transform: translate(0, 10px);
+}
+
 .articles {
-  // margin-top: 60px;
   width: 100vw;
   height: 100vh;
-
   .first-floor {
-    height: 40vh;
     background: url("https://img.libertys.cn/blog/bg7.jpg") no-repeat;
+    height: 40vh;
+    width: 100vw;
     background-size: cover;
     background-position: 30% center;
-    border: 1px solid black;
-  }
-
-  .word-cloud {
-    height: 300px;
-    width: 80vw;
-    border: 1px solid pink;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: rgb(182, 174, 174);
+    font-weight: bold;
+    font-size: 40px;
+    p {
+      font-size: 14px;
+      color: rgb(150, 147, 147);
+    }
+  }
+  .second-floor {
+    height: 1000px;
+    margin: 20px 10vw;
+    display: flex;
 
-    .canvas {
-      border: 1px solid black;
-      width: 100%;
+    .left {
+      flex: 1;
+      background-color: white;
+      border-radius: 10px;
+      margin-right: 10px;
+      padding: 0 10px;
+      .new-arts {
+        // border: 1px solid black;
+        margin-bottom: -30px;
+        text-align: center;
+        height: 100px;
+        line-height: 100px;
+        font-size: 30px;
+        font-weight: bold;
+        color: rgb(120, 130, 138);
+        text-shadow: 3px 3px 3px rgb(222, 175, 175);
+      }
+    }
+    .right {
+      width: 300px;
       height: 100%;
-      // cursor: pointer;
-      // width: 200px;
-      // height: 100px;
+      border-radius: 10px;
     }
   }
 }
+
+@media (max-width: 749px) {
+  .articles {
+    .second-floor {
+      margin: 20px 2vw;
+      .left {
+        padding: 0 5px;
+        margin-top: -10px;
+        .new-arts {
+          height: 80px;
+          line-height: 80px;
+          margin-bottom: -30px;
+        }
+      }
+      .right {
+        display: none;
+      }
+    }
+  }
+}
+
 .articles-enter-from,
 .articles-leave-to {
   filter: blur(10px);

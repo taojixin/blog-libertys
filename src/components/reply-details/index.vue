@@ -20,7 +20,7 @@
               <span class="time">{{ formatTime(item.time) }}</span>
             </div>
             <div class="right">
-              <i class="iconfont icon-aixin"></i>
+              <!-- <i class="iconfont icon-aixin"></i> -->
               <div
                 class="reply"
                 :class="{ active: item.id === replyOtherId }"
@@ -49,8 +49,12 @@
           />
           <!-- 其他人对该评论的评论 -->
           <div class="third-floor">
-            <template v-for="(child,index) in item.replyMsg" :key="child.id">
-              <ReplyItem :replyItem="child" :replyName="item.name" :floor="index" />
+            <template v-for="(child, index) in item.replyMsg" :key="child.id">
+              <ReplyItem
+                :replyItem="child"
+                :replyName="item.name"
+                :floor="index"
+              />
             </template>
           </div>
         </div>
@@ -67,7 +71,7 @@ import { ref } from "vue";
 import useMessageStore from "../../stores/message";
 import { formatTime } from "../../utils/formatTime";
 
-const emit = defineEmits(['updateArtMsg'])
+const emit = defineEmits(["updateArtMsg"]);
 const props = defineProps({
   replyType: {
     type: String,
@@ -83,17 +87,17 @@ const props = defineProps({
   },
   articleId: {
     type: Number,
-  }
+  },
 });
 
 // 更新数据
 const useMessage = useMessageStore();
 function updateMsg() {
-  replyOtherId.value = 0
+  replyOtherId.value = 0;
   if (props.replyType === "message") {
     useMessage.fetchMessageDetails();
-  } else if (props.replyType === 'article') {
-    emit('updateArtMsg')
+  } else if (props.replyType === "article") {
+    emit("updateArtMsg");
   }
 }
 
@@ -129,7 +133,7 @@ function replyOther(replyId) {
     font-size: 30px;
     font-weight: bold;
     color: rgb(133, 133, 222);
-    border-bottom: 1px dotted skyblue;
+    border-bottom: 3px dotted skyblue;
     padding: 20px 0 10px 0;
   }
 
@@ -152,7 +156,7 @@ function replyOther(replyId) {
       }
     }
     .right-box {
-      padding: 10px 10px;
+      padding: 10px;
       // border: 1px solid pink;
       flex: 1;
 
@@ -202,11 +206,6 @@ function replyOther(replyId) {
         // padding: 30px 0;
         // border-bottom: 2px solid rgb(176, 173, 173);
         margin-bottom: 10px;
-        .reply {
-          span {
-            color: skyblue;
-          }
-        }
         p {
           text-indent: 2em;
           font-size: 20px;
@@ -217,10 +216,6 @@ function replyOther(replyId) {
           padding: 5px 10px;
         }
       }
-
-      .third-floor {
-        // border: 1px solid red;
-      }
     }
   }
 }
@@ -229,5 +224,59 @@ function replyOther(replyId) {
   color: gray !important;
   transform: scale(1.3);
   margin: 0 10px;
+}
+
+@media (max-width: 500px) {
+  .reply-details {
+    .count {
+      font-size: 20px;
+      padding: 25px 5px 5px;
+    }
+    .one-item {
+      .left-box {
+        width: 55px;
+        .avatar {
+          width: 60px;
+          height: 60px;
+          border-radius: 60px;
+        }
+      }
+      .right-box {
+        padding: 5px;
+        .first-floor {
+          margin-top: 10px;
+          // border: 1px solid red;
+          .left {
+            .name {
+              font-size: 18px;
+              width: 90px;
+              // 文字超出省略
+              overflow: hidden;
+              text-overflow: ellipsis; // 产出部分省略
+              display: -webkit-box;
+              -webkit-line-clamp: 1; // 最多显示四行
+              -webkit-box-orient: vertical;
+            }
+            .time {
+              font-size: 12px;
+            }
+          }
+          .right {
+            .reply {
+              width: 40px;
+              height: 20px;
+              padding: 3px;
+            }
+          }
+        }
+        .second-floor {
+          p {
+            font-size: 14px;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

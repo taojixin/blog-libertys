@@ -165,9 +165,9 @@ function sendMsg() {
       justify-content: space-between;
 
       .name,
-      .qq,
-      .url {
+      .qq {
         height: 40px;
+        width: 100%;
         margin: 5px 10px;
         border-radius: 5px;
         display: flex;
@@ -254,6 +254,42 @@ function sendMsg() {
     }
   }
 }
+
+
+@media (max-width: 500px) {
+  .reply-panle {
+    .msg-box {
+      padding: 0;
+      .first-floor {
+        .name,.qq {
+          margin: 5px 0;
+          font-size: 14px;
+        }
+
+      }
+      .second-floor {
+        .text {
+          textarea {
+            font-size: 14px;
+          }
+        }
+      }
+      .third-floor {
+        .right-third {
+          .send {
+            width: 70px;
+            height: 40px;
+            line-height: 40px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+
 .panel-enter-from,
 .panel-leave-to {
   filter: blur(10px);

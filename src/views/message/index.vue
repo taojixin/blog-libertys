@@ -62,9 +62,20 @@ function updateMsg() {
   }
   .second-floor {
     width: 80vw;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin: 20px auto;
     padding: 20px 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .message {
+    .second-floor {
+      width: 95vw;
+      // border: 1px solid red;
+      margin: 10px 10px;
+      padding: 10px 0;
+    }
   }
 }
 .message-enter-from,

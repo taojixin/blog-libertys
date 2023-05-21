@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="right">
-          <div class="recommend">推 荐 文 章</div>
+          <div class="recommend">推 荐 文 章 {{clientWidth}}</div>
           <template v-for="(item, index) in aritcleList" :key="item.id">
             <article-item
               :articleItem="item"
@@ -54,6 +54,9 @@ import AllLabels from "./cpns/all-labels.vue";
 import WebsiteInfo from "./cpns/website-info.vue";
 import ArticleItem from "../../components/article-item/index.vue";
 import Footer from "../../components/footer/index.vue";
+
+import useResize from "../../hooks/useResize";
+const {clientWidth} = useResize()
 
 const useScreen = useScreenStore();
 const isHidden = useScreen.isSmall; // 页面宽度缩小到一定程度时隐藏左侧内容
@@ -138,11 +141,12 @@ watch(scrollTop, (newValue) => {
     .right {
       width: 1000px;
       position: relative;
-      margin-right: 60px;
+      margin-right: 5vw;
+      padding-bottom: 50px;
 
       .recommend {
         position: absolute;
-        top: -20px;
+        top: -30px;
         left: 50%;
         transform: translate(-50%, 0);
         height: 50px;
@@ -212,6 +216,9 @@ watch(scrollTop, (newValue) => {
     .second-floor {
       .left {
         display: none;
+      }
+      .right {
+        margin-right: 0;
       }
     }
     .first-floor {

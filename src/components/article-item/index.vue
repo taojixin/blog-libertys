@@ -1,13 +1,12 @@
 <template>
   <div
     class="article-item shadow-box"
-    id="asd"
     @click="articleDetails(articleItem.id)"
     ref="itemRef"
   >
     <template v-if="(artNum + 1) % 2 !== 0">
       <div class="side">
-        <div class="bgimage" :style="{backgroundImage: imgUrl}"></div>
+        <div class="bgimage" :style="{ backgroundImage: imgUrl }"></div>
       </div>
       <div class="other-side">
         <div class="article-msg">
@@ -27,25 +26,48 @@
       </div>
     </template>
     <template v-else>
-      <div class="other-side">
-        <div class="article-msg">
-          <div class="title">{{ articleItem.title }}</div>
-          <div class="art-about">
-            <div class="top" v-if="itemIndex === 0">置顶</div>
-            <i class="iconfont icon-shijian"></i>
-            {{ articleItem.time }}
-          </div>
-          <div class="description">{{ articleItem.description }}</div>
-          <div class="labels">
-            <template v-for="item in articleItem.labels" :key="item.id">
-              <div class="label-item">{{ item.label }}</div>
-            </template>
+      <template v-if="!isSmall">
+        <div class="other-side">
+          <div class="article-msg">
+            <div class="title">{{ articleItem.title }}</div>
+            <div class="art-about">
+              <div class="top" v-if="itemIndex === 0">置顶</div>
+              <i class="iconfont icon-shijian"></i>
+              {{ articleItem.time }}
+            </div>
+            <div class="description">{{ articleItem.description }}</div>
+            <div class="labels">
+              <template v-for="item in articleItem.labels" :key="item.id">
+                <div class="label-item">{{ item.label }}</div>
+              </template>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="side">
-        <div class="bgimage" :style="{backgroundImage: imgUrl}"></div>
-      </div>
+        <div class="side">
+          <div class="bgimage" :style="{ backgroundImage: imgUrl }"></div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="side">
+          <div class="bgimage" :style="{ backgroundImage: imgUrl }"></div>
+        </div>
+        <div class="other-side">
+          <div class="article-msg">
+            <div class="title">{{ articleItem.title }}</div>
+            <div class="art-about">
+              <div class="top" v-if="itemIndex === 0">置顶</div>
+              <i class="iconfont icon-shijian"></i>
+              {{ articleItem.time }}
+            </div>
+            <div class="description">{{ articleItem.description }}</div>
+            <div class="labels">
+              <template v-for="item in articleItem.labels" :key="item.id">
+                <div class="label-item">{{ item.label }}</div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </template>
     </template>
   </div>
 </template>
@@ -53,6 +75,10 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
+import useScreenStore from "../../stores/screen";
+
+const useScreen = useScreenStore();
+const isSmall = useScreen.isSmall;
 
 const router = useRouter();
 const props = defineProps({
@@ -78,14 +104,14 @@ function articleDetails(articleId) {
 }
 
 // 背景图片懒加载
-const imgUrl = ref("url(https://img.libertys.cn/blog/load1.gif)")
+const imgUrl = ref("url(https://img.libertys.cn/blog/load1.gif)");
 const itemRef = ref();
 onMounted(() => {
   const observer = new IntersectionObserver(
     ([{ isIntersecting }]) => {
       if (isIntersecting) {
         observer.unobserve(itemRef.value);
-        imgUrl.value = "url(" + props.articleItem.imgUrl + ")"
+        imgUrl.value = "url(" + props.articleItem.imgUrl + ")";
       }
     },
     {
@@ -99,17 +125,16 @@ onMounted(() => {
 <style lang="less" scoped>
 .article-item {
   height: 250px;
+  margin: 20px 0;
   display: flex;
-  // border: 1px solid black;
   border-radius: 10px;
-  margin: 50px 0;
-  overflow: hidden;
-  cursor: pointer;
   box-sizing: border-box;
+  overflow: hidden;
   transition: all 0.2s;
 
   &:hover {
     border: 5px solid var(--purpleBorder);
+    cursor: pointer;
     .side {
       .bgimage {
         transform: scale(1.2);
@@ -120,7 +145,7 @@ onMounted(() => {
   .side {
     flex: 5;
     overflow: hidden;
-    z-index: -10;
+    // z-index: -10;
     .bgimage {
       width: 100%;
       height: 100%;
@@ -136,7 +161,7 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     background-color: aliceblue;
-    z-index: -10;
+    // z-index: -10;
 
     .article-msg {
       position: relative;
@@ -152,7 +177,7 @@ onMounted(() => {
 
       .art-about {
         margin: 15px 0;
-        font-size: 1px;
+        font-size: 12px;
         color: rgb(130, 222, 130);
         display: flex;
         align-items: center;
@@ -180,17 +205,21 @@ onMounted(() => {
         overflow: hidden;
         text-overflow: ellipsis; // 产出部分省略
         display: -webkit-box;
-        -webkit-line-clamp: 4; // 最多显示四行
+        -webkit-line-clamp: 3; // 最多显示四行
         -webkit-box-orient: vertical;
       }
       .labels {
+        width: 80%;
+        overflow: hidden;
         position: absolute;
-        bottom: 0;
+        bottom: 20px;
         display: flex;
         justify-content: space-around;
+        border-bottom: 3px dotted pink;
         .label-item {
           margin: 5px;
-          padding: 5px;
+          padding: 10px;
+        border-radius: 5px;
           color: var(--purpleColor);
           display: flex;
           justify-content: center;
@@ -202,14 +231,34 @@ onMounted(() => {
   }
 }
 
-@media (min-width: 750px) {
-}
-@media (max-width: 749px) {
+
+@media (max-width: 500px) {
   .article-item {
     flex-direction: column;
-    height: 400px;
+    height: 300px;
     .side {
       flex: 3;
+    }
+    .other-side {
+      flex: 3;
+      .article-msg {
+        padding: 5px 10px;
+        height: 150px;
+        .title {
+          font-size: 15px;
+        }
+        .art-about {
+          margin: 10px 0;
+        }
+        .labels {
+          bottom: 5px;
+          .label-item {
+            font-size: 12px;
+            border-radius: 5px;
+            padding: 5px;
+          }
+        }
+      }
     }
   }
 }

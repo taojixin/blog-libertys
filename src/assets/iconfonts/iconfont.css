@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3655463 */
-  src: url('iconfont.woff2?t=1684502284677') format('woff2'),
-       url('iconfont.woff?t=1684502284677') format('woff'),
-       url('iconfont.ttf?t=1684502284677') format('truetype');
+  src: url('iconfont.woff2?t=1684633845738') format('woff2'),
+       url('iconfont.woff?t=1684633845738') format('woff'),
+       url('iconfont.ttf?t=1684633845738') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mysql-01:before {
+  content: "\e644";
+}
+
+.icon-shijianzhou:before {
+  content: "\e69a";
+}
+
+.icon-dizhi:before {
+  content: "\e63d";
+}
+
+.icon-houtaiguanli:before {
+  content: "\e62d";
+}
+
+.icon-node:before {
+  content: "\ec12";
 }
 
 .icon-shouqicaidan:before {

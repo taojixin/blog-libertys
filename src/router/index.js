@@ -31,18 +31,18 @@ const router = createRouter({
       path: "/life",
       name: "life",
       component: () => import("../views/life/index.vue"),
-      children: [
-        {
-          path: "/daily",
-          name: "daily",
-          component: () => import("../views/life/cpns/daily.vue"),
-        },
-        {
-          path: "/music",
-          name: "music",
-          component: () => import("../views/life/cpns/music.vue"),
-        },
-      ],
+      // children: [
+      //   {
+      //     path: "/daily",
+      //     name: "daily",
+      //     component: () => import("../views/life/cpns/daily.vue"),
+      //   },
+      // ],
+    },
+    {
+      path: "/record",
+      name: "record",
+      component: () => import("../views/life/cpns/record.vue"),
     },
     {
       path: "/phone",
@@ -50,9 +50,8 @@ const router = createRouter({
       component: () => import("../views/life/cpns/phone.vue"),
     },
     {
-      path: '/albumdetails/:albumId',
-      component: () => import("../components/album-details/index.vue")
-
+      path: "/albumdetails/:albumId",
+      component: () => import("../components/album-details/index.vue"),
     },
     {
       path: "/lover",
@@ -68,6 +67,10 @@ const router = createRouter({
     {
       path: "/articledetails/:articleId",
       component: () => import("../components/article-details/index.vue"),
+    },
+    {
+      path: "/labeldetails/:label",
+      component: () => import("../components/label-details/index.vue"),
     },
     {
       path: "/:pathMatch(.*)*",
