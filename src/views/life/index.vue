@@ -6,79 +6,64 @@
       <p>须知少时凌云志，曾许人间第一流!</p>
     </div>
     <div class="second-floor">
-      <div class="left" v-if="!isHidden">
-        <div class="left-box">
-          <div class="info">
-            <!-- <div class="bg"></div> -->
-            <img src="../../assets/avatar.jpg" alt="" />
-          </div>
-        </div>
-      </div>
-      <div class="right"></div>
+      <template v-for="item in lifeItemDetail" :key="item.id">
+        <LifeItem :lifeItem="item" />
+      </template>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import useScreenStore from "../../stores/screen";
-
-const useScreen = useScreenStore();
-const isHidden = useScreen.isSmall;
+import LifeItem from '../../components/life-item/index.vue'
 
 const isShow = ref(false);
 onMounted(() => {
   isShow.value = true;
 });
+const lifeItemDetail = ref([
+  {
+    id: 1,
+    content:
+      "须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!",
+    time: "2023-09-06",
+    like: 99,
+    imgUrl: [
+      "https://img.libertys.cn/rock/%E5%9C%A3%E6%B9%AE%E4%BC%8A%E8%8E%B1%E5%A8%9C.png",
+      "https://img.libertys.cn/blog/bg4.jpg",
+      "https://img.libertys.cn/blog/bg4.jpg",
+      "https://img.libertys.cn/blog/bg4.jpg",
+      "https://img.libertys.cn/blog/bg4.jpg",
+      "https://img.libertys.cn/blog/bg4.jpg",
+    ],
+  },
+  {
+    id: 1,
+    content:
+      "须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!",
+    time: "2023-09-06",
+    like: 99,
+    imgUrl: [],
+  },
+  {
+    id: 1,
+    content:
+      "须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!须知少时凌云志，曾许人间第一流!",
+    time: "2023-09-06",
+    like: 99,
+    imgUrl: [],
+  },
+]);
 </script>
 
 <style lang="less" scoped>
 .life {
   .second-floor {
-    border: 1px solid black;
-    margin-top: 50px;
-    display: flex;
-    justify-content: space-between;
-    .left {
-      width: 200px;
-      height: 500px;
-      margin: 0 20px 0 10vw;
-      background-color: aqua;
-      .left-box {
-        width: 100%;
-        border: 1px solid red;
-        .info {
-          border: 1px solid black;
-          position: relative;
-          height: 200px;
-          overflow: hidden;
-          background-color: #d4d4d4;
-          .bg {
-            width: 100%;
-            height: 200px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-image: url(http://img.libertys.cn/blog/sprinkle_flowers.gif);
-            background-size: cover;
-            background-repeat: no-repeat;
-          }
-          img {
-            position: absolute;
-            left: 50%;
-            transform: translate(-50%, 0);
-            width: 80px;
-            height: 80px;
-            border-radius: 80px;
-          }
-        }
-      }
-    }
-    .right {
-      flex: 1;
-      margin-right: 10vw;
-      background-color: aliceblue;
-    }
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 60vw;
+    background-color: white;
   }
   .first-floor {
     background: url("https://img.libertys.cn/blog/bg6.jpg") no-repeat;
@@ -96,6 +81,15 @@ onMounted(() => {
     p {
       font-size: 14px;
       color: rgb(150, 147, 147);
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .life {
+    .second-floor {
+      width: 100vw;
+      padding: 5px;
     }
   }
 }

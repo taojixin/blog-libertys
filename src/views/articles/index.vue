@@ -86,7 +86,6 @@ onMounted(async () => {
     }
   }
   .second-floor {
-    height: 1000px;
     margin: 20px 10vw;
     display: flex;
 
