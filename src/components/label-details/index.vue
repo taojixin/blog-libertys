@@ -22,31 +22,26 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { onMounted, ref } from "vue";
-import { getArticles } from "../../services";
+import { getArticles, getArticlesLabel } from "../../services";
 
 import articleItem from "../article-item/index.vue";
 import ShortcutBtn from "../shortcut-btn/index.vue";
 
 const route = useRoute();
 const label = route.params.label;
+const labelId = route.params.id
 
 const isShow = ref(false);
 
 // 请求文章数据
 let aritcleList = ref([]);
-const count = ref(5);
-const offset = ref(0);
 onMounted(async () => {
   // 过渡动画
   isShow.value = true;
   // 获取数据
-  await getArticles(count.value, offset.value).then((res) => {
-    aritcleList.value = res.data.endResult.map((item) => {
-      item.time =
-        item.time.split("T")[0] + " " + item.time.split("T")[1].substr(0, 8);
-      return item;
-    });
-  });
+  await getArticlesLabel(labelId).then(res => {
+    aritcleList.value = res
+  })
 });
 </script>
 

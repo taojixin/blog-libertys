@@ -9,7 +9,7 @@
         <template v-for="item in albumInfo" :key="item.id">
           <div
             class="album hvr-radial-out"
-            :style="{ backgroundImage: bgUrl(item.phoneUrl[0]) }"
+            :style="{ backgroundImage: bgUrl(item.photoUrl[0]) }"
             @click="albumDetails(item.id)"
           >
             <div class="title">{{ item.title }}</div>
@@ -26,18 +26,19 @@
 import { ref, onUnmounted } from "vue";
 import {useRouter} from 'vue-router'
 import {storeToRefs} from 'pinia'
-import usePhoneStore from "../../../stores/phone";
+import usePhotoStore from "../../../stores/photo";
 import ShortcutBtn from '../../../components/shortcut-btn/index.vue'
 
 const isShow = ref(false);
 
 const router = useRouter()
 
+
 // 发送请求获取相册信息
-const phoneStore = usePhoneStore()
-phoneStore.fetchPhoneMsg()
+const photoStore = usePhotoStore()
+photoStore.fetchPhotoMsg()
 // 获取store数据
-const {albumInfo} = storeToRefs(phoneStore)
+const {albumInfo} = storeToRefs(photoStore)
 
 // 背景图片
 function bgUrl(path) {

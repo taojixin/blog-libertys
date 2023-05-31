@@ -16,7 +16,6 @@ const useMessageStore = defineStore("message", {
       })
     },
     async getMoreMessage() {
-
     }
   }
 })

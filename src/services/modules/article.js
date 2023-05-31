@@ -39,3 +39,20 @@ export function commentArtMsg(name, qq, content, articleId, reply, replyId) {
     data: { name, content, qq, reply, replyId, articleId },
   });
 }
+
+// 获取所有标签
+export function getAllLabels() {
+  return request.get({
+    url: "/admin/articles/getlabels",
+  });
+}
+
+// 根据标签id获取文章列表
+export function getArticlesLabel(labelId) {
+  return request.post({
+    url: "admin/articles/queryarticles",
+    data: {
+      labelId,
+    },
+  });
+}

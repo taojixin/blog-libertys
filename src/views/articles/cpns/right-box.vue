@@ -31,24 +31,42 @@
 </template>
 
 <script setup>
-import { onUnmounted, watch, ref } from "vue";
+import { onUnmounted, watch, ref, onMounted } from "vue";
 import useScroll from "../../../hooks/useScroll";
 import WordCloud from "wordcloud";
+import useArticleStore from "../../../stores/article";
+import { storeToRefs } from "pinia";
+
+const articleStore = useArticleStore();
+const { wordData } = storeToRefs(articleStore);
 
 const task = ["学习Typescript", "完成后台管理系统", "找实习学习", "学习新技术"];
 
-let wordData = [
-  ["javaScript", 12],
-  ["Java", 8],
-  ["生活", 20],
-  ["杂谈", 17],
-  ["vue", 13],
-  ["node", 12],
-];
+// let wordData = [
+//   ["javaScript", 12],
+//   ["Java", 8],
+//   ["生活", 20],
+//   ["杂谈", 17],
+//   ["vue", 13],
+//   ["node", 12],
+// ];
+
+// let labels = articleStore.labels;
+// onMounted(async () => {
+//   console.log(labels.value);
+//   const end = labels.value.map((item) => {
+//     return {
+//       label: item.label,
+//       count: item.articleCount,
+//     };
+//   });
+//   console.log("res",end);
+// });
+
 // 词云
 const timer = setTimeout(() => {
   const options = eval({
-    list: wordData, //或者[['各位观众',45],['词云', 21],['来啦!!!',13]],只要格式满足这样都可以
+    list: wordData.value, //或者[['各位观众',45],['词云', 21],['来啦!!!',13]],只要格式满足这样都可以
     gridSize: 1, // 密集程度 数字越小越密集
     weightFactor: 1, // 字体大小=原始大小*weightFactor
     // maxFontSize: 12, //最大字号
@@ -63,7 +81,7 @@ const timer = setTimeout(() => {
     //   console.log(item, dimension, event);
     // },
     weightFactor: function (size) {
-      return size * 2;
+      return size * 8;
     },
   });
   WordCloud(document.getElementById("canvas"), options);

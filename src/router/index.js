@@ -69,7 +69,7 @@ const router = createRouter({
       component: () => import("../components/article-details/index.vue"),
     },
     {
-      path: "/labeldetails/:label",
+      path: "/labeldetails/:id/:label",
       component: () => import("../components/label-details/index.vue"),
     },
     {

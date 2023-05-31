@@ -31,12 +31,15 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { getArticles } from "../../services";
+import useArticleStore from "../../stores/article";
 
 import ArticleItem from "../../components/article-item/index.vue";
 import LabelsList from "./cpns/labels-list.vue";
 import RightBox from "./cpns/right-box.vue";
 
 const isShow = ref(false);
+const articleStore = useArticleStore()
+articleStore.fetchLabels()
 
 // 请求文章数据
 let aritcleList = ref([]);

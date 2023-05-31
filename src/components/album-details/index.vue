@@ -3,14 +3,14 @@
     <div class="album-details" v-show="isShow">
       <div
         class="first-floor"
-        :style="{ backgroundImage: bgImage(album.phoneUrl[0]) }"
+        :style="{ backgroundImage: bgImage(album.photoUrl[0]) }"
       >
         <span>{{ album.title }}</span>
         <p>{{ album.describe }}</p>
       </div>
       <div class="second-floor">
         <div class="grid">
-          <template v-for="(item, index) in album.phoneUrl" :key="index">
+          <template v-for="(item, index) in album.photoUrl" :key="index">
             <div class="grid-item" @click="enlarge(item)">
               <img v-loadlazy="item" src="https://img.libertys.cn/blog/load1.gif"  />
             </div>
@@ -29,7 +29,7 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
-import usePhoneStore from "../../stores/phone";
+import usePhotoStore from "../../stores/photo";
 import ShortcutBtn from '../shortcut-btn/index.vue'
 
 
@@ -46,11 +46,17 @@ onUnmounted(() => {
 const route = useRoute();
 const router = useRouter();
 
-const phoneStore = usePhoneStore();
-phoneStore.fetchPhoneMsg();
-const { albumInfo } = storeToRefs(phoneStore);
+const photoStore = usePhotoStore();
+photoStore.fetchPhotoMsg();
+const { albumInfo } = storeToRefs(photoStore);
 const albumId = route.params.albumId;
-const album = albumInfo.value[albumId - 1];
+
+const album = ref({})
+albumInfo.value.map(item => {
+  if (item.id === albumId - 0) {
+    album.value = item
+  }
+})
 
 if (albumInfo.value.length === 0) {
   router.push("/phone");

@@ -6,8 +6,8 @@
       <p>须知少时凌云志，曾许人间第一流!</p>
     </div>
     <div class="second-floor">
-      <template v-for="item in timeline" :key="item.id">
-        <div class="odd" v-if="item.id % 2 !== 0">
+      <template v-for="(item,index) in timeline" :key="item.id">
+        <div class="odd" v-if="index % 2 === 0">
           <div class="left">
             <div class="box">
               <div class="time">{{ item.time }}</div>
@@ -34,6 +34,8 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { getTimeline } from "../../../services/modules/daily";
+import {formatTime} from '../../../utils/formatTime'
 const isShow = ref(false);
 onMounted(() => {
   isShow.value = true;
@@ -52,6 +54,17 @@ const timeline = ref([
   { id: 11, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
   { id: 12, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
 ]);
+
+getTimeline().then(res => {
+  const result = res.data.map(item => {
+    return {
+      id: item.id,
+      time: formatTime(item.time),
+      record: item.content
+    }
+  })
+  timeline.value = result
+})
 </script>
 
 <style lang="less" scoped>
