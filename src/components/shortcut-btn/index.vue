@@ -22,8 +22,7 @@ defineProps({
     type: Boolean,
     default: true,
   },
-});
-
+})
 function backBottom() {
   window.scrollTo({
     top: document.documentElement.offsetHeight, //回到底部
