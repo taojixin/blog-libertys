@@ -24,21 +24,21 @@
 
 <script setup>
 import { ref, onUnmounted } from "vue";
-import {useRouter} from 'vue-router'
-import {storeToRefs} from 'pinia'
+import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
 import usePhotoStore from "../../../stores/photo";
-import ShortcutBtn from '../../../components/shortcut-btn/index.vue'
+import ShortcutBtn from "../../../components/shortcut-btn/index.vue";
 
 const isShow = ref(false);
 
-const router = useRouter()
-
+const router = useRouter();
 
 // 发送请求获取相册信息
-const photoStore = usePhotoStore()
-photoStore.fetchPhotoMsg()
+const photoStore = usePhotoStore();
+photoStore.fetchPhotoMsg();
 // 获取store数据
-const {albumInfo} = storeToRefs(photoStore)
+const { albumInfo } = storeToRefs(photoStore);
+console.log(albumInfo.value);
 
 // 背景图片
 function bgUrl(path) {
@@ -46,7 +46,7 @@ function bgUrl(path) {
 }
 // 点击跳转
 function albumDetails(albumId) {
-  router.push(`/albumdetails/${albumId}`)
+  router.push(`/albumdetails/${albumId}`);
 }
 
 const timer = setTimeout(() => {
@@ -98,13 +98,13 @@ onUnmounted(() => {
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-      transition: all .3s;
+      transition: all 0.3s;
       &:hover {
         cursor: pointer;
 
         .describe {
           top: 50%;
-          transform: translate(-50% ,  50%);
+          transform: translate(-50%, 50%);
         }
       }
 
@@ -124,7 +124,7 @@ onUnmounted(() => {
         left: 50%;
         font-weight: bold;
         color: #dba8df;
-        transition: all .5s;
+        transition: all 0.5s;
         transform: translate(-50%, 300px);
       }
     }
@@ -137,9 +137,7 @@ onUnmounted(() => {
       width: 95vw;
     }
   }
-  
 }
-
 
 .phone-enter-from,
 .phone-leave-to {
@@ -157,7 +155,6 @@ onUnmounted(() => {
 .phone-leave-active {
   transition: all 1s ease;
 }
-
 
 /* Radial Out */
 .hvr-radial-out {
@@ -182,7 +179,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(219, 168, 223, .3);
+  background: rgba(219, 168, 223, 0.3);
   border-radius: 100%;
   -webkit-transform: scale(0);
   transform: scale(0);
@@ -193,10 +190,14 @@ onUnmounted(() => {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-.hvr-radial-out:hover, .hvr-radial-out:focus, .hvr-radial-out:active {
+.hvr-radial-out:hover,
+.hvr-radial-out:focus,
+.hvr-radial-out:active {
   color: white;
 }
-.hvr-radial-out:hover:before, .hvr-radial-out:focus:before, .hvr-radial-out:active:before {
+.hvr-radial-out:hover:before,
+.hvr-radial-out:focus:before,
+.hvr-radial-out:active:before {
   -webkit-transform: scale(2);
   transform: scale(2);
 }

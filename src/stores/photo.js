@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import {getAllPhotos} from '../services/index'
+import { getAllPhotos } from "../services/index";
 
 const usePhotoStore = defineStore("photo", {
   state: () => ({
@@ -72,40 +72,48 @@ const usePhotoStore = defineStore("photo", {
       const albumMessage = [
         {
           title: "背景图片",
-          describe: "用于blog或别的网页的背景图片"
+          describe: "用于blog或别的网页的背景图片",
         },
         {
           title: "博客图片",
-          describe: "用于博客的图片"
+          describe: "用于博客的图片",
         },
         {
           title: "动态图片",
-          describe: "一些动态图片"
+          describe: "一些动态图片",
         },
         {
           title: "洛克王国",
-          describe: "洛克王国相关图片"
+          describe: "洛克王国相关图片",
         },
         {
           title: "测试用图",
-          describe: "用于测试的图片"
+          describe: "用于测试的图片",
+        },
+        {
+          title: "项目",
+          describe: "项目",
+        },
+      ];
+      await getAllPhotos().then((res) => {
+        {
+          console.log(res);
+          this.albumInfo = res.data.allPhotos.map((item) => {
+            console.log("1");
+            const title = albumMessage[item.id].title;
+            const describe = albumMessage[item.id].describe;
+            const photoUrl = item.photoList.map((item) => {
+              return item.httpsUrl;
+            });
+            return {
+              id: item.id,
+              title,
+              describe,
+              photoUrl,
+            };
+          });
         }
-      ]
-      await getAllPhotos().then(res => {{
-        this.albumInfo = res.data.allPhotos.map(item => {
-          const title = albumMessage[item.id].title
-          const describe = albumMessage[item.id].describe
-          const photoUrl = item.photoList.map(item => {
-            return item.httpsUrl
-          })
-          return {
-            id: item.id,
-            title,
-            describe,
-            photoUrl: photoUrl
-          }
-        })
-      }})
+      });
     },
   },
 });

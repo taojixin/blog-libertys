@@ -1,9 +1,9 @@
 <template>
-  <div class="footer">
+  <footer class="footer">
     <a href="https://beian.miit.gov.cn" target="_blank"
       >蜀ICP备2022007017号-1</a
     >
-  </div>
+  </footer>
 </template>
 
 <script setup></script>
@@ -24,9 +24,9 @@
 @media (max-width: 749px) {
   .footer {
     height: 20px;
-      a {
-        font-size: 14px;
-      }
+    a {
+      font-size: 14px;
+    }
   }
 }
 </style>
