@@ -1,0 +1,41 @@
+// 最上面一层的样式
+.web-header {
+  // background: url("https://img.libertys.cn/blog/bg7.jpg") no-repeat;
+  height: 40vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: 30% center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(182, 174, 174);
+  font-weight: bold;
+  font-size: 30px;
+  h2 {
+    margin: 10px;
+  }
+  p {
+    font-size: 14px;
+    color: rgb(150, 147, 147);
+  }
+}
+
+// 页面初始过渡动画
+.initial-enter-from,
+.initial-leave-to {
+  filter: blur(10px);
+  opacity: 0.5;
+}
+
+.initial-enter-to,
+.initial-leave-from {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+.initial-enter-active,
+.initial-leave-active {
+  transition: all 1s ease;
+}
