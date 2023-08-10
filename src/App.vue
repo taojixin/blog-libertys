@@ -1,13 +1,15 @@
 <template>
-    <router-view />
+  <WebMusic />
+  <router-view />
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router'
-import useResize from "./hooks/useResize"
+import { RouterView } from "vue-router";
+import useResize from "./hooks/useResize";
 
-useResize()
+import WebMusic from "./components/web-music/index.vue";
 
+useResize();
 </script>
 
 <style scoped>

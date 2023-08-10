@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3655463 */
-  src: url('iconfont.woff2?t=1684633845738') format('woff2'),
-       url('iconfont.woff?t=1684633845738') format('woff'),
-       url('iconfont.ttf?t=1684633845738') format('truetype');
+  src: url('iconfont.woff2?t=1691680127855') format('woff2'),
+       url('iconfont.woff?t=1691680127855') format('woff'),
+       url('iconfont.ttf?t=1691680127855') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-24gl-pause:before {
+  content: "\ea6d";
+}
+
+.icon-24gl-play:before {
+  content: "\ea6e";
+}
+
+.icon-shangyishoushangyige:before {
+  content: "\e78a";
+}
+
+.icon-xiayigexiayishou:before {
+  content: "\e7a5";
+}
+
+.icon-zanting:before {
+  content: "\e640";
+}
+
+.icon-more-br:before {
+  content: "\e649";
+}
+
+.icon-cha:before {
+  content: "\e612";
+}
+
+.icon-24gf-playlistMusic4:before {
+  content: "\ea86";
+}
+
+.icon-zanting1:before {
+  content: "\e668";
 }
 
 .icon-mysql-01:before {
