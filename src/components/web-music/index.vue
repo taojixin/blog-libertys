@@ -1,18 +1,26 @@
 <template>
   <div class="web-music">
     <div class="play-box">
+      <!-- 转动歌曲图片 -->
       <div class="music-img">
         <img src="https://img.libertys.cn/blog/avatar.jpg" alt="" />
       </div>
+      <!-- 操作按钮 -->
       <div class="btn-list">
-        <i class="iconfont icon-shangyishoushangyige"></i>
+        <i
+          class="iconfont icon-shangyishoushangyige"
+          @click="nextOrPrevious(true)"
+        ></i>
         <i
           class="iconfont icon-zanting zanting"
           @click="playOpera"
           v-if="!isPlay"
         ></i>
         <i class="iconfont icon-zanting1 bofang" @click="playOpera" v-else></i>
-        <i class="iconfont icon-xiayigexiayishou"></i>
+        <i
+          class="iconfont icon-xiayigexiayishou"
+          @click="nextOrPrevious(false)"
+        ></i>
         <i
           class="iconfont icon-24gf-playlistMusic4 music-list"
           @click="isExtend = !isExtend"
@@ -21,25 +29,26 @@
         <i class="iconfont icon-cha cha"></i>
       </div>
     </div>
+    <!-- 歌曲列表 -->
     <div class="song-list" v-show="isExtend">
       <template v-for="item in songs" :key="item.id">
         <div class="song">
           {{ item.songName }}-{{ item.singer }}
           <i
             class="iconfont icon-24gl-pause"
-            v-if="isCurrentPlay"
-            @click="someOnePlay(item.src)"
+            v-if="currentMusicId === item.id && isPlay"
+            @click="someOnePlay(item)"
           ></i>
           <i
             class="iconfont icon-24gl-play"
             v-else
-            @click="someOnePlay(item.src)"
+            @click="someOnePlay(item)"
           ></i>
         </div>
       </template>
     </div>
     <audio autoplay="autoplay" ref="musicRef" v-show="true">
-      <source src="../../assets/苏打绿 - 他夏了夏天.mp3" />
+      <source :src="songSrc" />
     </audio>
   </div>
 </template>
@@ -47,35 +56,35 @@
 <script setup>
 import { ref } from "vue";
 
-const isPlay = ref(false);
-const isCurrentPlay = ref(false);
-const isExtend = ref(false);
-const musicRef = ref(null);
-const songSrc = ref("");
+const isPlay = ref(false); // 是否正在播放
+const currentMusicId = ref(0); // 正在播放的歌曲id
+const isExtend = ref(false); // 播放列表是否展开
+const musicRef = ref(null); // 播放器实例
+const songSrc = ref("/src/assets/锦零 - 鱼玄机.mp3");
 const songs = ref([
   {
     id: 0,
     songName: "鱼玄机",
     singer: "锦零",
-    src: "../../assets/锦零 - 鱼玄机.mp3",
+    src: "/src/assets/锦零 - 鱼玄机.mp3",
+  },
+  {
+    id: 1,
+    songName: "他夏了夏天",
+    singer: "绿苏打1",
+    src: "/src/assets/苏打绿 - 他夏了夏天.mp3",
   },
   {
     id: 2,
     songName: "他夏了夏天",
-    singer: "绿苏打1",
-    src: "../../assets/苏打绿 - 他夏了夏天.mp3",
+    singer: "绿苏打2",
+    src: "/src/assets/苏打绿 - 他夏了夏天.mp3",
   },
   {
     id: 3,
     songName: "他夏了夏天",
-    singer: "绿苏打2",
-    src: "../../assets/苏打绿 - 他夏了夏天.mp3",
-  },
-  {
-    id: 4,
-    songName: "他夏了夏天",
     singer: "绿苏打3",
-    src: "../../assets/苏打绿 - 他夏了夏天.mp3",
+    src: "/src/assets/苏打绿 - 他夏了夏天.mp3",
   },
 ]);
 
@@ -87,8 +96,42 @@ function playOpera() {
     musicRef.value.pause();
   }
 }
-function someOnePlay(src) {
-  songSrc.value = src;
+function someOnePlay(item) {
+  if (currentMusicId.value === item.id && isPlay.value) {
+    isPlay.value = false;
+    currentMusicId.value = item.id;
+    musicRef.value.pause();
+  } else {
+    isPlay.value = true;
+    currentMusicId.value = item.id;
+    songSrc.value = item.src;
+    musicRef.value.load();
+  }
+}
+function nextOrPrevious(booleanValue) {
+  console.log(currentMusicId.value);
+  isPlay.value = true;
+  if (booleanValue) {
+    if (currentMusicId.value > 0) {
+      currentMusicId.value -= 1;
+      songSrc.value = songs.value[currentMusicId.value].src;
+      musicRef.value.load();
+    } else {
+      currentMusicId.value = songs.value.length - 1;
+      songSrc.value = songs.value[currentMusicId.value].src;
+      musicRef.value.load();
+    }
+  } else {
+    if (currentMusicId.value < songs.value.length - 1) {
+      currentMusicId.value += 1;
+      songSrc.value = songs.value[currentMusicId.value].src;
+      musicRef.value.load();
+    } else {
+      currentMusicId.value = 0;
+      songSrc.value = songs.value[currentMusicId.value].src;
+      musicRef.value.load();
+    }
+  }
 }
 </script>
 
