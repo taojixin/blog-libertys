@@ -2,7 +2,7 @@
   <div class="article-details">
     <!-- 加载动画 -->
     <div class="loading" v-if="loading">
-      <img src="https://img.libertys.cn/blog/load1.gif" />
+      <img src="https://libertys.oss-cn-chengdu.aliyuncs.com/blog/load1.gif" />
     </div>
     <!-- 顶部图片 -->
     <div class="first" :style="bgImage(artDetails.imgUrl)">
@@ -51,7 +51,7 @@
 <script setup>
 import ReplyPanel from "../reply-panel/index.vue";
 import ReplyDetails from "../reply-details/index.vue";
-import ShortcutBtn from '../shortcut-btn/index.vue'
+import ShortcutBtn from "../shortcut-btn/index.vue";
 
 import { onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";

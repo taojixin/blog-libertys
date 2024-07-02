@@ -1,32 +1,41 @@
 <template>
   <div class="introduction hvr-wobble-skew shadow-box">
-    <img src="../../../assets/avatar.jpg" class="hvr-buzz-out"/>
+    <img src="../../../assets/avatar.jpg" class="hvr-buzz-out" />
     <div class="author">Libertys</div>
     <div class="info">
       <div class="info-item">
         <span>文章</span>
-        <span>{{articleNum}}</span>
+        <span>{{ articleNum }}</span>
       </div>
       <div class="info-item">
         <span>标签</span>
-        <span>{{labelNum}}</span>
+        <span>{{ labelNum }}</span>
       </div>
     </div>
     <div class="contact">
       <i class="iconfont icon-QQ-circle-fill"></i>
-      <a href="https://github.com/taojixin" target="_blank"><i class="iconfont icon-github-fill"></i></a>
+      <a href="https://github.com/taojixin" target="_blank"
+        ><i class="iconfont icon-github-fill"></i
+      ></a>
       <i class="iconfont icon-weixin2"></i>
-      <a href="https://blog.csdn.net/qq_60602244" target="_blank"><i class="iconfont icon-csdn1"></i></a>
+      <a href="https://blog.csdn.net/qq_60602244" target="_blank"
+        ><i class="iconfont icon-csdn1"></i
+      ></a>
     </div>
-    <img class="grass" src="https://img.libertys.cn/blog/grass.gif" alt="" srcset="">
+    <img
+      class="grass"
+      src="https://libertys.oss-cn-chengdu.aliyuncs.com/blog/grass.gif"
+      alt=""
+      srcset=""
+    />
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import { ref } from "vue";
 
-const articleNum = ref(61)
-const labelNum = ref(28)
+const articleNum = ref(61);
+const labelNum = ref(28);
 </script>
 
 <style lang="less" scoped>

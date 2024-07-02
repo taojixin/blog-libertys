@@ -25,7 +25,8 @@ onMounted(() => {
 .home-top {
   height: 100vh;
   width: 100vw;
-  background: url("https://img.libertys.cn/blog/homebg.png") no-repeat;
+  background: url("https://libertys.oss-cn-chengdu.aliyuncs.com/blog/homebg.png")
+    no-repeat;
   background-position: 30% center;
   overflow: hidden;
   background-size: cover;

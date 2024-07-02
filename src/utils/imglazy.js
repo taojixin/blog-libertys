@@ -11,7 +11,7 @@
 //               el.src = bindings.value;
 //               // 图片加载出错时，显示默认图片
 //               el.onerror = () => {
-//                 el.src = 'https://img.libertys.cn/blog/load1.gif';
+//                 el.src = 'https://libertys.oss-cn-chengdu.aliyuncs.com/blog/load1.gif';
 //               };
 //             }
 //           },
@@ -37,7 +37,7 @@ const loadLazyDirective = {
           el.src = bindings.value;
           // 图片加载出错时，显示默认图片
           el.onerror = () => {
-            el.src = 'https://img.libertys.cn/blog/load1.gif';
+            el.src = 'https://libertys.oss-cn-chengdu.aliyuncs.com/blog/load1.gif';
           };
         }
       },

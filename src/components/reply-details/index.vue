@@ -105,7 +105,7 @@ function updateMsg() {
 function setAvatar(qq) {
   if (qq.length === 0) {
     return {
-      backgroundImage: `url(https://img.libertys.cn/rock/%E7%A6%8F%E7%86%99%E6%B0%B4%E7%81%B5.png)`,
+      backgroundImage: `url(https://libertys.oss-cn-chengdu.aliyuncs.com/rock/%E7%A6%8F%E7%86%99%E6%B0%B4%E7%81%B5.png)`,
     };
   }
   return {

@@ -35,7 +35,7 @@ import useMessageStore from "../../stores/message";
 
 const title = "留言";
 const sentense = "须知少时凌云志，曾许人间第一流!";
-const bgImgUrl = "https://img.libertys.cn/blog/bg4.jpg";
+const bgImgUrl = "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg4.jpg";
 
 const isShow = ref(false);
 onMounted(() => {

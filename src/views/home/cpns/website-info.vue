@@ -5,17 +5,16 @@
       <span>关于本站</span>
     </div>
     <div class="content">
-      <div class="article-num">文章数目：<span>59</span></div>
-      <div class="label-num">标签数目：<span>59</span></div>
-      <div class="visitor-num">总访客量：<span>59</span></div>
+      <div class="article-num">文章数目：<span>51</span></div>
+      <div class="label-num">标签数目：<span>16</span></div>
+      <div class="visitor-num">总访客量：<span>241</span></div>
       <div class="visitor-num">最近更新：<span>2023-04-11</span></div>
-      <div class="exist-time">运行时间：<span>1000小时</span></div>
+      <div class="exist-time">运行时间：<span>1000+小时</span></div>
     </div>
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="less" scoped>
 .website-info {

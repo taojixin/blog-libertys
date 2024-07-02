@@ -104,7 +104,9 @@ function articleDetails(articleId) {
 }
 
 // 背景图片懒加载
-const imgUrl = ref("url(https://img.libertys.cn/blog/load1.gif)");
+const imgUrl = ref(
+  "url(https://libertys.oss-cn-chengdu.aliyuncs.com/blog/load1.gif)"
+);
 const itemRef = ref();
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -219,7 +221,7 @@ onMounted(() => {
         .label-item {
           margin: 5px;
           padding: 10px;
-        border-radius: 5px;
+          border-radius: 5px;
           color: var(--purpleColor);
           display: flex;
           justify-content: center;
@@ -230,7 +232,6 @@ onMounted(() => {
     }
   }
 }
-
 
 @media (max-width: 500px) {
   .article-item {

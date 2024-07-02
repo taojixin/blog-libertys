@@ -29,7 +29,7 @@ import ShortcutBtn from "../shortcut-btn/index.vue";
 
 const route = useRoute();
 const label = route.params.label;
-const labelId = route.params.id
+const labelId = route.params.id;
 
 const isShow = ref(false);
 
@@ -39,9 +39,9 @@ onMounted(async () => {
   // 过渡动画
   isShow.value = true;
   // 获取数据
-  await getArticlesLabel(labelId).then(res => {
-    aritcleList.value = res
-  })
+  await getArticlesLabel(labelId).then((res) => {
+    aritcleList.value = res;
+  });
 });
 </script>
 
@@ -53,7 +53,8 @@ onMounted(async () => {
     margin: 0 auto;
   }
   .first-floor {
-    background: url("https://img.libertys.cn/blog/bg6.jpg") no-repeat;
+    background: url("https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg6.jpg")
+      no-repeat;
     height: 40vh;
     width: 100vw;
     background-size: cover;

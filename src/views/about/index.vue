@@ -18,7 +18,7 @@ import WebHeader from "../../components/web-header/index.vue";
 
 const title = "关于";
 const sentense = "须知少时凌云志，曾许人间第一流!";
-const bgImgUrl = "https://img.libertys.cn/blog/bg3.jpg";
+const bgImgUrl = "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg3.jpg";
 const isShow = ref(false);
 
 const instance = getCurrentInstance();

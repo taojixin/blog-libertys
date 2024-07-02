@@ -6,7 +6,7 @@
       <p>须知少时凌云志，曾许人间第一流!</p>
     </div>
     <div class="second-floor">
-      <template v-for="(item,index) in timeline" :key="item.id">
+      <template v-for="(item, index) in timeline" :key="item.id">
         <div class="odd" v-if="index % 2 === 0">
           <div class="left">
             <div class="box">
@@ -35,36 +35,50 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { getTimeline } from "../../../services/modules/daily";
-import {formatTime} from '../../../utils/formatTime'
+import { formatTime } from "../../../utils/formatTime";
 const isShow = ref(false);
 onMounted(() => {
   isShow.value = true;
 });
 const timeline = ref([
-  { id: 1, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 2, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 3, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 4, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 5, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 6, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 7, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 8, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 9, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 10, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 11, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
-  { id: 12, time: "20200-09-06", record: "购买云服务器，部署项目的云服务器。" },
+  { id: 1, time: "2021-7-01", record: "开始认真学习变成" },
+  {
+    id: 2,
+    time: "2021-09-01",
+    record: "习惯使用markdown记录学习笔记，并在CSDN发布文章",
+  },
+  {
+    id: 3,
+    time: "2021-10-01",
+    record: "学习java，但后来选择了前端，可能是应为热爱",
+  },
+  { id: 4, time: "2022-02-01", record: "学习nodejs服务端的开发" },
+  {
+    id: 5,
+    time: "2022-07-01",
+    record: "暑假完成了人生中的第一个前后端分离的个人博客网站",
+  },
+  {
+    id: 6,
+    time: "2022-08-01",
+    record: "持续学习，学习各种计算机知识，计算机网络、Linux等",
+  },
+  { id: 7, time: "2023-09-1", record: "第一段实习结束" },
+  { id: 8, time: "2023-09-30", record: "开始第二次实习" },
+  { id: 9, time: "2024-6-13", record: "大学顺利毕业。" },
+  { id: 10, time: "2024-6-15", record: "第二次实习结束。" },
 ]);
 
-getTimeline().then(res => {
-  const result = res.data.map(item => {
+getTimeline().then((res) => {
+  const result = res.data.map((item) => {
     return {
       id: item.id,
       time: formatTime(item.time),
-      record: item.content
-    }
-  })
-  timeline.value = result
-})
+      record: item.content,
+    };
+  });
+  timeline.value = result;
+});
 </script>
 
 <style lang="less" scoped>
@@ -173,7 +187,8 @@ getTimeline().then(res => {
     }
   }
   .first-floor {
-    background: url("https://img.libertys.cn/blog/bg6.jpg") no-repeat;
+    background: url("https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg6.jpg")
+      no-repeat;
     height: 40vh;
     width: 100vw;
     background-size: cover;

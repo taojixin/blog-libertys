@@ -1,9 +1,12 @@
 <template>
-  <div class="web-music">
+  <div class="web-music" v-if="isMusicPlay">
     <div class="play-box">
       <!-- 转动歌曲图片 -->
       <div class="music-img">
-        <img src="https://img.libertys.cn/blog/avatar.jpg" alt="" />
+        <img
+          src="https://libertys.oss-cn-chengdu.aliyuncs.com/blog/avatar.jpg"
+          alt=""
+        />
       </div>
       <!-- 操作按钮 -->
       <div class="btn-list">
@@ -26,7 +29,10 @@
           @click="isExtend = !isExtend"
           :style="{ color: isExtend ? '#1ecd98' : '#a8a8a8' }"
         ></i>
-        <i class="iconfont icon-cha cha"></i>
+        <i
+          class="iconfont icon-cha cha"
+          @click="isMusicPlay = !isMusicPlay"
+        ></i>
       </div>
     </div>
     <!-- 歌曲列表 -->
@@ -56,35 +62,26 @@
 <script setup>
 import { ref } from "vue";
 
+const isMusicPlay = ref(true);
 const isPlay = ref(false); // 是否正在播放
 const currentMusicId = ref(0); // 正在播放的歌曲id
 const isExtend = ref(false); // 播放列表是否展开
 const musicRef = ref(null); // 播放器实例
-const songSrc = ref("/src/assets/锦零 - 鱼玄机.mp3");
+const songSrc = ref(
+  "https://libertys.oss-cn-chengdu.aliyuncs.com/test/%E9%94%A6%E9%9B%B6%20-%20%E9%B1%BC%E7%8E%84%E6%9C%BA.mp3"
+);
 const songs = ref([
   {
     id: 0,
     songName: "鱼玄机",
     singer: "锦零",
-    src: "/src/assets/锦零 - 鱼玄机.mp3",
+    src: "https://libertys.oss-cn-chengdu.aliyuncs.com/test/%E9%94%A6%E9%9B%B6%20-%20%E9%B1%BC%E7%8E%84%E6%9C%BA.mp3",
   },
   {
     id: 1,
     songName: "他夏了夏天",
-    singer: "绿苏打1",
-    src: "/src/assets/苏打绿 - 他夏了夏天.mp3",
-  },
-  {
-    id: 2,
-    songName: "他夏了夏天",
-    singer: "绿苏打2",
-    src: "/src/assets/苏打绿 - 他夏了夏天.mp3",
-  },
-  {
-    id: 3,
-    songName: "他夏了夏天",
-    singer: "绿苏打3",
-    src: "/src/assets/苏打绿 - 他夏了夏天.mp3",
+    singer: "绿苏打",
+    src: "https://libertys.oss-cn-chengdu.aliyuncs.com/test/%E8%8B%8F%E6%89%93%E7%BB%BF%20-%20%E4%BB%96%E5%A4%8F%E4%BA%86%E5%A4%8F%E5%A4%A9.mp3",
   },
 ]);
 

@@ -19,7 +19,7 @@ import WebHeader from "../../components/web-header/index.vue";
 
 const title = "生活";
 const sentense = "须知少时凌云志，曾许人间第一流!";
-const bgImgUrl = "https://img.libertys.cn/blog/bg6.jpg";
+const bgImgUrl = "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg6.jpg";
 
 const isShow = ref(false);
 onMounted(() => {
@@ -33,12 +33,12 @@ const lifeItemDetail = ref([
     time: "2023-09-06",
     like: 99,
     imgUrl: [
-      "https://img.libertys.cn/rock/%E5%9C%A3%E6%B9%AE%E4%BC%8A%E8%8E%B1%E5%A8%9C.png",
-      "https://img.libertys.cn/blog/bg4.jpg",
-      "https://img.libertys.cn/blog/bg4.jpg",
-      "https://img.libertys.cn/blog/bg4.jpg",
-      "https://img.libertys.cn/blog/bg4.jpg",
-      "https://img.libertys.cn/blog/bg4.jpg",
+      "https://libertys.oss-cn-chengdu.aliyuncs.com/rock/%E5%9C%A3%E6%B9%AE%E4%BC%8A%E8%8E%B1%E5%A8%9C.png",
+      "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg4.jpg",
+      "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg4.jpg",
+      "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg4.jpg",
+      "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg4.jpg",
+      "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg4.jpg",
     ],
   },
   {

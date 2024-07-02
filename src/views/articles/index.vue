@@ -25,7 +25,7 @@ import useArticleStore from "../../stores/article";
 
 const title = "文章";
 const sentense = "须知少时凌云志，曾许人间第一流!";
-const bgImgUrl = "https://img.libertys.cn/blog/bg7.jpg";
+const bgImgUrl = "https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg7.jpg";
 
 const articleStore = useArticleStore();
 const count = ref(5);

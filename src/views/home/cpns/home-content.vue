@@ -73,13 +73,13 @@ watch(scrollTop, (newValue) => {
 .positionfixed {
   position: fixed;
   transform: translate(0, 40px);
-  left: 60px;
+  // left: 60px;
   top: 0;
 }
 .home-content {
   margin-top: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   .left {
     width: 300px;
     margin-left: 60px;
@@ -93,6 +93,7 @@ watch(scrollTop, (newValue) => {
     position: relative;
     margin-right: 5vw;
     padding-bottom: 50px;
+    margin-left: 2vw;
 
     .recommend {
       position: absolute;

@@ -4,7 +4,7 @@
       <div class="look">
         <img
           class="lookagain"
-          src="https://img.libertys.cn/blog/lookagain.gif"
+          src="https://libertys.oss-cn-chengdu.aliyuncs.com/blog/lookagain.gif"
           alt=""
         />
         <div class="avatar"></div>
@@ -42,7 +42,7 @@ import { storeToRefs } from "pinia";
 const articleStore = useArticleStore();
 const { wordData } = storeToRefs(articleStore);
 
-const task = ["学习Typescript", "完成后台管理系统", "找实习学习", "学习新技术"];
+const task = ["找合适工作", "使用React重构个人博客", "学习技术Nest.js"];
 
 // let wordData = [
 //   ["javaScript", 12],

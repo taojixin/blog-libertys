@@ -9,7 +9,10 @@
       <p>{{ announcement.secondP }}</p>
       <p>邮箱：{{ announcement.email }}</p>
     </div>
-    <img class="grass" src="https://img.libertys.cn/blog/grass.gif" />
+    <img
+      class="grass"
+      src="https://libertys.oss-cn-chengdu.aliyuncs.com/blog/grass.gif"
+    />
   </div>
 </template>
 
@@ -17,8 +20,8 @@
 import { reactive } from "vue";
 const announcement = reactive({
   firstP:
-    "大家好，这里是我的个人博客，是一位计算机软件工程专业即将面临找工作的大三学生！",
-  secondP: "此博客博主打算长期维护与改进，欢迎大家留言发表自己的意见！",
+    "大家好，这里是我的个人博客，是一位计算机软件工程专业今年毕业的学生！此博客为第一份实习前的项目，由于实习后没有足够的时间来开发，该博客还未完成。一年左右的实习都是使用vue开发的，因此这个博客网站将不再使用vue继续开发，想使用不同的技术进行开发，后续将使用React重构该博客并增加新的功能，欢迎大家留言发表自己的意见！",
+  secondP: "",
   email: "491675919@qq.com",
 });
 </script>
@@ -48,6 +51,8 @@ const announcement = reactive({
   }
   .content {
     p {
+      padding: 0;
+      margin: 0;
       text-indent: 2em;
       color: rgb(113, 82, 82);
     }

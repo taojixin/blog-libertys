@@ -12,14 +12,17 @@
         <div class="grid">
           <template v-for="(item, index) in album.photoUrl" :key="index">
             <div class="grid-item" @click="enlarge(item)">
-              <img v-loadlazy="item" src="https://img.libertys.cn/blog/load1.gif"  />
+              <img
+                v-loadlazy="item"
+                src="https://libertys.oss-cn-chengdu.aliyuncs.com/blog/load1.gif"
+              />
             </div>
           </template>
         </div>
       </div>
       <!-- 遮罩层 -->
       <div class="mask" v-show="isMask" @click="isMask = !isMask">
-        <img ref="maskImgRef" src="" alt="">
+        <img ref="maskImgRef" src="" alt="" />
       </div>
       <ShortcutBtn />
     </div>
@@ -30,8 +33,7 @@
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import usePhotoStore from "../../stores/photo";
-import ShortcutBtn from '../shortcut-btn/index.vue'
-
+import ShortcutBtn from "../shortcut-btn/index.vue";
 
 import { ref, onUnmounted } from "vue";
 const isShow = ref(false);
@@ -51,12 +53,12 @@ photoStore.fetchPhotoMsg();
 const { albumInfo } = storeToRefs(photoStore);
 const albumId = route.params.albumId;
 
-const album = ref({})
-albumInfo.value.map(item => {
+const album = ref({});
+albumInfo.value.map((item) => {
   if (item.id === albumId - 0) {
-    album.value = item
+    album.value = item;
   }
-})
+});
 
 if (albumInfo.value.length === 0) {
   router.push("/phone");
@@ -67,11 +69,11 @@ function bgImage(src) {
 }
 
 // 点击放大图片
-const maskImgRef = ref(null)
-const isMask = ref(false)
+const maskImgRef = ref(null);
+const isMask = ref(false);
 function enlarge(src) {
-  maskImgRef.value.src = src
-  isMask.value = true
+  maskImgRef.value.src = src;
+  isMask.value = true;
 }
 </script>
 
@@ -100,7 +102,7 @@ function enlarge(src) {
     }
   }
   .first-floor {
-    // background: url("https://img.libertys.cn/blog/bg3.jpg") no-repeat;
+    // background: url("https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg3.jpg") no-repeat;
     height: 40vh;
     width: 100vw;
     background-size: cover;

@@ -60,7 +60,8 @@ onUnmounted(() => {
 <style lang="less" scoped>
 .phone {
   .first-floor {
-    background: url("https://img.libertys.cn/blog/bg5.jpg") no-repeat;
+    background: url("https://libertys.oss-cn-chengdu.aliyuncs.com/blog/bg5.jpg")
+      no-repeat;
     height: 40vh;
     width: 100vw;
     background-size: cover;
